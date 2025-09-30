@@ -1,7 +1,7 @@
 enum AppRoutes {
   DisplayIntoScreen('displayIntoScreen'),
-  HomeScreen('home'),
-  SuraDetails('suraDetails');
+  OnboardingScreen('OnboardingScreen'),
+  RegistrScreen('register');
 
   final String route;
 
