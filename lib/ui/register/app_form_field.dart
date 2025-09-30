@@ -1,8 +1,6 @@
-import 'package:evently_app/core/colors/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../l10n/app_localizations.dart';
 
 class AppFormField extends StatefulWidget {
   String labelText;
