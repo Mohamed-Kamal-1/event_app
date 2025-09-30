@@ -1,5 +1,6 @@
 import 'package:evently_app/core/colors/app_color.dart';
 import 'package:evently_app/core/images/app_image.dart';
+import 'package:evently_app/core/routes/app_routes.dart';
 import 'package:evently_app/logic/switch_language_and_theme/switch_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,6 @@ import '../logic/switch_language_and_theme/switch_language.dart';
 import '../providers/app_language_provider.dart';
 
 class OnboardingScreen extends StatefulWidget {
-  static const String routeName = 'home';
 
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
@@ -33,7 +33,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           children: [
             Image.asset(AppImage.primaryLogo),
             SizedBox(width: 10),
-            Text('Evently', style: textTheme.headlineMedium),
+            Text(appLocale!.evently, style: textTheme.headlineMedium),
           ],
         ),
       ),
@@ -103,7 +103,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                     ),
                     onPressed: () {
-
+                      Navigator.pushNamed(context, AppRoutes.RegistrScreen.route);
                     },
                     child: Text(
                       appLocale.letsStart,
