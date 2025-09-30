@@ -2,13 +2,10 @@ import 'package:evently_app/core/colors/app_color.dart';
 import 'package:evently_app/core/images/app_image.dart';
 import 'package:evently_app/core/routes/app_routes.dart';
 import 'package:evently_app/logic/switch_language_and_theme/switch_theme.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../l10n/app_localizations.dart';
 import '../logic/switch_language_and_theme/switch_language.dart';
-import '../providers/app_language_provider.dart';
 
 class OnboardingScreen extends StatefulWidget {
 
@@ -19,9 +16,7 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
-    AppLanguageProvider appLanguageProvider = Provider.of<AppLanguageProvider>(
-      context,
-    );
+
 
     TextTheme textTheme = Theme.of(context).textTheme;
     AppLocalizations? appLocale = AppLocalizations.of(context);
@@ -55,7 +50,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    appLocale!.personalizeYourExperience,
+                    appLocale.personalizeYourExperience,
                     style: textTheme.titleMedium?.copyWith(
                       color: AppColor.bluePrimaryColor,
                     ),
