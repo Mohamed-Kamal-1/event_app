@@ -1,0 +1,4 @@
+AppLocalizations? appLocale = AppLocalizations.of(context);
+//
+TextTheme textTheme = Theme.of(context).textTheme;
+//
