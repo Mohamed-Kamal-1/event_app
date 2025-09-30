@@ -9,6 +9,12 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get evently => 'Evently';
+
+  @override
+  String get commentOnBoardingScreenName => 'onBoardingScreen';
+
+  @override
   String get personalizeYourExperience => 'Personalize Your Experience';
 
   @override
@@ -23,4 +29,43 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get letsStart => 'Let’s Start';
+
+  @override
+  String get commentRegisterAndLoginScreenName => 'Register_and_Login_';
+
+  @override
+  String get register => 'Register';
+
+  @override
+  String get name => 'Name';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get rePassword => 'Re Password';
+
+  @override
+  String get createAccount => 'Create Account';
+
+  @override
+  String get alreadyHaveAccount => 'Already Have Account ';
+
+  @override
+  String get login => 'Login ';
+
+  @override
+  String get forgetPassword => 'Forget Password';
+
+  @override
+  String get doNotHaveAccount => 'Don’t Have Account';
+
+  @override
+  String get loginWithGoogle => 'Login With Google';
+
+  @override
+  String get resetPassword => 'Reset Password';
 }
