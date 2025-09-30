@@ -12,6 +12,7 @@
   "register": "Register",
   "name": "Name",
   "email": "Email",
+  "phone": "Phone",
   "password": "Password",
   "rePassword": "Re Password",
   "createAccount": "Create Account",

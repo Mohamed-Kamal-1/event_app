@@ -10,7 +10,7 @@ class AppTheme {
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.brown,
     ),
-    scaffoldBackgroundColor: Colors.brown,
+    scaffoldBackgroundColor: Colors.white,
     textTheme: TextTheme(
       titleMedium: GoogleFonts.inter(
         fontSize: 20,

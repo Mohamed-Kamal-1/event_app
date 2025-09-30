@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'app_form_field.dart';
 
+typedef Validator = String? Function(String? text );
 class AppFormField extends StatefulWidget {
   String labelText;
   IconData icon;
   TextInputType keyboardType;
   bool isPassword;
-
+  Validator? validator;
+  TextEditingController? controller;
   AppFormField({
     required this.labelText,
     required this.icon,
     this.keyboardType = TextInputType.text,
     this.isPassword = false,
+    this.validator,
+    this.controller,
   });
 
   @override
@@ -27,7 +32,10 @@ class _AppFormFieldState extends State<AppFormField> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: TextFormField(
-        obscureText: isTextvisable,
+        controller: widget.controller,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        obscureText: widget.isPassword ? isTextvisable : isTextvisable == false,
+        validator: widget.validator,
         style: GoogleFonts.jockeyOne(fontSize: 18, fontStyle: FontStyle.italic),
         keyboardType: widget.keyboardType,
         decoration: InputDecoration(
@@ -38,6 +46,7 @@ class _AppFormFieldState extends State<AppFormField> {
                   onTap: () {
                     setState(() {
                       isTextvisable = !isTextvisable;
+                      print('is password is : ${widget.isPassword}');
                     });
                   },
                   child: Icon(
