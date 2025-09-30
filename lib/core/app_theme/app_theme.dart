@@ -33,6 +33,46 @@ class AppTheme {
             fontSize: 36,
             fontWeight: FontWeight.bold
         )
+    ),
+
+    inputDecorationTheme: InputDecorationThemeData(
+      floatingLabelBehavior: FloatingLabelBehavior.auto ,
+      border: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: AppColor.bluePrimaryColor,
+          width: 1.5,
+        ),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+              color: AppColor.gray,
+            width: 1.5,
+          ),
+        borderRadius: BorderRadius.circular(16),
+      ),
+
+      labelStyle: GoogleFonts.inter(
+        color: AppColor.gray,
+        fontWeight: FontWeight.w500,
+      ),
+      hintStyle: GoogleFonts.inter(
+        color: AppColor.gray,
+        fontWeight: FontWeight.w500,
+      ),
+
+
+    ),
+
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColor.bluePrimaryColor,
+        foregroundColor: AppColor.whitePrimaryColor,
+        padding: EdgeInsets.all(16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadiusGeometry.circular(16),
+        ),
+      )
     )
   );
 
