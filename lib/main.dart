@@ -1,4 +1,5 @@
 import 'package:evently_app/SharedPreferences/app_shared_preferences.dart';
+import 'package:evently_app/providers/app_auth_provider.dart';
 import 'package:evently_app/providers/app_language_provider.dart';
 import 'package:evently_app/providers/app_theme_provider.dart';
 import 'package:evently_app/ui/onboarding_screen.dart';
@@ -22,6 +23,7 @@ void main()async{
       providers: [
       ChangeNotifierProvider(create: (context) => AppLanguageProvider()),
       ChangeNotifierProvider(create: (context) => AppThemeProvider()),
+      ChangeNotifierProvider(create: (context) => AppAuthProvider()),
       ],
       child: MainApp())
 
@@ -46,7 +48,7 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      initialRoute: AppRoutes.RegistrScreen.route,
+      initialRoute: AppRoutes.OnboardingScreen.route,
       routes: {
         AppRoutes.OnboardingScreen.route : (context) => OnboardingScreen(),
         AppRoutes.RegistrScreen.route : (context) => RegistrScreen(),

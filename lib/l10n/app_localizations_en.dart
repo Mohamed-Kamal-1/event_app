@@ -55,7 +55,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get createAccount => 'Create Account';
 
   @override
-  String get alreadyHaveAccount => 'Already Have Account ';
+  String get alreadyHaveAccount => 'Already Have Account?';
 
   @override
   String get login => 'Login ';
@@ -71,4 +71,20 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get resetPassword => 'Reset Password';
+
+  @override
+  String get commentValidationInRegisterAndLoginScreenName =>
+      'Register_and_Login_';
+
+  @override
+  String get pleaseEnter => 'Please Enter';
+
+  @override
+  String get pleaseEnterValid => 'Please Enter valid ';
+
+  @override
+  String get passwordsDoesNotMatch => 'Passwords does not match';
+
+  @override
+  String get passwordMust6Char => 'Password must be at least 6 characters';
 }

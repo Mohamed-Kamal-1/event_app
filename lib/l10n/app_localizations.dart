@@ -191,7 +191,7 @@ abstract class AppLocalizations {
   /// No description provided for @alreadyHaveAccount.
   ///
   /// In en, this message translates to:
-  /// **'Already Have Account '**
+  /// **'Already Have Account?'**
   String get alreadyHaveAccount;
 
   /// No description provided for @login.
@@ -223,6 +223,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reset Password'**
   String get resetPassword;
+
+  /// No description provided for @commentValidationInRegisterAndLoginScreenName.
+  ///
+  /// In en, this message translates to:
+  /// **'Register_and_Login_'**
+  String get commentValidationInRegisterAndLoginScreenName;
+
+  /// No description provided for @pleaseEnter.
+  ///
+  /// In en, this message translates to:
+  /// **'Please Enter'**
+  String get pleaseEnter;
+
+  /// No description provided for @pleaseEnterValid.
+  ///
+  /// In en, this message translates to:
+  /// **'Please Enter valid '**
+  String get pleaseEnterValid;
+
+  /// No description provided for @passwordsDoesNotMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords does not match'**
+  String get passwordsDoesNotMatch;
+
+  /// No description provided for @passwordMust6Char.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 6 characters'**
+  String get passwordMust6Char;
 }
 
 class _AppLocalizationsDelegate

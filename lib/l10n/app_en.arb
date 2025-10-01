@@ -16,11 +16,18 @@
   "password": "Password",
   "rePassword": "Re Password",
   "createAccount": "Create Account",
-  "alreadyHaveAccount": "Already Have Account ",
+  "alreadyHaveAccount": "Already Have Account?",
   "login": "Login ",
   "forgetPassword": "Forget Password",
   "doNotHaveAccount": "Don’t Have Account",
   "loginWithGoogle": "Login With Google",
-  "resetPassword": "Reset Password"
+  "resetPassword": "Reset Password",
+
+  "commentValidationInRegisterAndLoginScreenName": "Register_and_Login_",
+  "pleaseEnter":"Please Enter",
+  "pleaseEnterValid":"Please Enter valid ",
+  "passwordsDoesNotMatch" : "Passwords does not match",
+  "passwordMust6Char" : "Password must be at least 6 characters"
+
 
 }

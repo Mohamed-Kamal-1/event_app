@@ -34,7 +34,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get commentRegisterAndLoginScreenName => 'Register_and_Login_';
 
   @override
-  String get register => 'تسجيل';
+  String get register => ' تسجيل الدخول';
 
   @override
   String get name => 'الاسم';
@@ -55,7 +55,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get createAccount => 'إنشاء حساب';
 
   @override
-  String get alreadyHaveAccount => 'لديك حساب بالفعل';
+  String get alreadyHaveAccount => 'لديك حساب بالفعل؟';
 
   @override
   String get login => 'تسجيل الدخول';
@@ -71,4 +71,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get resetPassword => 'إعادة تعيين كلمة المرور';
+
+  @override
+  String get commentValidationInRegisterAndLoginScreenName => 'تسجيل_ودخول_';
+
+  @override
+  String get pleaseEnter => 'من فضلك أدخل';
+
+  @override
+  String get pleaseEnterValid => 'من فضلك أدخل قيمة صحيحة لـ ';
+
+  @override
+  String get passwordsDoesNotMatch => 'كلمة المرور غير متطابقة';
+
+  @override
+  String get passwordMust6Char => 'كلمة المرور يجب ألا تقل عن 6 أحرف';
 }
