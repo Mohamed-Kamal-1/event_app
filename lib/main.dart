@@ -1,5 +1,5 @@
 import 'package:evently_app/SharedPreferences/app_shared_preferences.dart';
-import 'package:evently_app/providers/app_auth_provider.dart';
+import 'package:evently_app/providers/app_auth_registered_provider.dart';
 import 'package:evently_app/providers/app_language_provider.dart';
 import 'package:evently_app/providers/app_theme_provider.dart';
 import 'package:evently_app/ui/onboarding_screen.dart';
