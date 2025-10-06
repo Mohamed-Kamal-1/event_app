@@ -1,15 +1,14 @@
-import 'package:evently_app/core/colors/app_color.dart';
-import 'package:evently_app/core/images/app_image.dart';
-import 'package:evently_app/core/routes/app_routes.dart';
-import 'package:evently_app/ui/register/app_form_field.dart';
-import 'package:evently_app/ui/register/validationForm/validators.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../core/colors/app_color.dart';
+import '../../core/images/app_image.dart';
+import '../../core/routes/app_routes.dart';
 import '../../l10n/app_localizations.dart';
-import 'app_form/app_form.dart';
+import  'app_form/app_form_login_screen.dart';
 
-class RegistrScreen extends StatelessWidget {
+class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -47,20 +46,19 @@ class RegistrScreen extends StatelessWidget {
               ),
               SizedBox(height: 24),
 
-              AppForm(),
-
-              SizedBox(height: 16),
+              AppFormLoginScreen(),
+              SizedBox(height: 24),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(appLocale.alreadyHaveAccount,style: textTheme.titleSmall,),
+                  Text(appLocale.doNotHaveAccount,style: textTheme.titleSmall,),
                   SizedBox(width: 10,),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, AppRoutes.LoginScreen.name);
+                      Navigator.pushNamed(context, AppRoutes.RegistrScreen.name);
                     },
                     child: Text(
-                      appLocale.login,
+                      appLocale.createAccount,
                       style: textTheme.titleSmall?.copyWith(
                         fontStyle: FontStyle.italic,
                         color: AppColor.bluePrimaryColor,
@@ -69,6 +67,15 @@ class RegistrScreen extends StatelessWidget {
                   ),
                 ],
               ),
+              Row(
+                children: [
+                Divider(color: AppColor.bluePrimaryColor,height: 5,),
+                // Text(appLocale.or),
+                // Divider(),
+
+                ],
+              )
+
             ],
           ),
         ),

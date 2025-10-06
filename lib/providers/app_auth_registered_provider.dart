@@ -45,6 +45,34 @@ class AppAuthProvider extends ChangeNotifier {
       return AuthResponse(success: false, failure: AuthFailure.general);
     }
   }
+
+
+  Future<AuthResponse> signIn(
+      String email,
+      String pass,
+
+      ) async {
+    try {
+
+      final credential = await _authService.signInWithEmailAndPassword(
+        email: email,
+        password: pass,
+      );
+
+      AppUser? user = await UserDao.getUserById(credential.user!.uid);
+
+      return AuthResponse(success: true, cred: credential,user: user);
+
+    } on FirebaseAuthException catch (e) {
+      if (e.code == AuthFailure.invalidCredentials.code) {
+        return AuthResponse(success: false, failure: AuthFailure.invalidCredentials);
+      }
+    } catch (e) {
+    }
+      return AuthResponse(success: false, failure: AuthFailure.general);
+  }
+
+
 }
 
 class AuthResponse {
@@ -59,6 +87,7 @@ class AuthResponse {
 enum AuthFailure {
   weakPassword('weak-password'),
   emailAlreadyExist('email-already-in-use'),
+  invalidCredentials('invalid-credential'),
   general('general');
 
   final String code;

@@ -1,8 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:evently_app/database/model/app_user.dart';
-import 'package:evently_app/database/model/user_dao.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 
 class AppAuthProvider extends ChangeNotifier {

@@ -2,6 +2,7 @@ import 'package:evently_app/SharedPreferences/app_shared_preferences.dart';
 import 'package:evently_app/providers/app_auth_registered_provider.dart';
 import 'package:evently_app/providers/app_language_provider.dart';
 import 'package:evently_app/providers/app_theme_provider.dart';
+import 'package:evently_app/ui/login/login_screen.dart';
 import 'package:evently_app/ui/onboarding_screen.dart';
 import 'package:evently_app/ui/register/registr_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -48,10 +49,11 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      initialRoute: AppRoutes.OnboardingScreen.route,
+      initialRoute: AppRoutes.LoginScreen.name,
       routes: {
-        AppRoutes.OnboardingScreen.route : (context) => OnboardingScreen(),
-        AppRoutes.RegistrScreen.route : (context) => RegistrScreen(),
+        AppRoutes.OnboardingScreen.name : (context) => OnboardingScreen(),
+        AppRoutes.RegistrScreen.name : (context) => RegistrScreen(),
+        AppRoutes.LoginScreen.name : (context) => LoginScreen(),
       },
     );
   }

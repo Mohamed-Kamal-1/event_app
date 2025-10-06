@@ -5,38 +5,28 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../l10n/app_localizations.dart';
-import '../app_form_field.dart';
-import '../validationForm/validators.dart';
+import '../../register/app_form_field.dart';
+import '../../register/validationForm/validators.dart';
 
-class AppForm extends StatefulWidget {
-  const AppForm({super.key});
+class AppFormLoginScreen extends StatefulWidget {
+  const AppFormLoginScreen({super.key});
 
   @override
-  State<AppForm> createState() => _AppFormState();
+  State<AppFormLoginScreen> createState() => _AppFormLoginScreenState();
 }
 
-
-class _AppFormState extends State<AppForm> {
-  TextEditingController nameController = TextEditingController();
-
+class _AppFormLoginScreenState extends State<AppFormLoginScreen> {
   TextEditingController emailController = TextEditingController();
-
-  TextEditingController phoneController = TextEditingController();
-
   TextEditingController passwordController = TextEditingController();
-
-  TextEditingController rePasswordController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
   bool isLoading = false;
+
   @override
   void dispose() {
-    nameController.dispose();
-    emailController.dispose();
-    phoneController.dispose();
     passwordController.dispose();
-    rePasswordController.dispose();
+    emailController.dispose();
   }
 
   @override
@@ -48,32 +38,13 @@ class _AppFormState extends State<AppForm> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           AppFormField(
-            labelText: appLocale!.name,
-            icon: Icons.person,
-            validator: (name) {
-              return validationInputNameAndPhone(name, context);
-            },
-            controller: nameController,
-          ),
-
-          AppFormField(
-            labelText: appLocale.email,
+            labelText: appLocale!.email,
             icon: Icons.mail,
             keyboardType: TextInputType.emailAddress,
             validator: (email) {
               return validationInputEmail(email, context);
             },
             controller: emailController,
-          ),
-
-          AppFormField(
-            labelText: appLocale.phone,
-            icon: Icons.phone,
-            keyboardType: TextInputType.phone,
-            validator: (phone) {
-              return validationInputNameAndPhone(phone, context);
-            },
-            controller: phoneController,
           ),
 
           AppFormField(
@@ -85,47 +56,33 @@ class _AppFormState extends State<AppForm> {
             },
             controller: passwordController,
           ),
-
-          AppFormField(
-            labelText: appLocale.rePassword,
-            icon: Icons.lock,
-            isPassword: true,
-            validator: (rePassword) {
-              String passController = passwordController.text;
-              return validationInputRePassword(
-                rePassword,
-                context,
-                passwordController: passController,
-              );
-            },
-            controller: passwordController,
-          ),
-
           SizedBox(height: 16),
           ElevatedButton(
             onPressed: (isLoading)
                 ? null
                 : () {
-                    createAccount();
+                    login();
                   },
             child: (isLoading)
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.center,
 
                     children: [
-                      CircularProgressIndicator(color: AppColor.bluePrimaryColor,),
-                      SizedBox(width: 16,),
-                      Text(appLocale.createAccount),
+                      CircularProgressIndicator(
+                        color: AppColor.bluePrimaryColor,
+                      ),
+                      SizedBox(width: 16),
+                      Text(appLocale.login),
                     ],
                   )
-                : Text(appLocale.createAccount),
+                : Text(appLocale.login),
           ),
         ],
       ),
     );
   }
 
-  void createAccount() async {
+  void login() async {
     if (validatForm() == false) {
       return;
     }
@@ -137,11 +94,9 @@ class _AppFormState extends State<AppForm> {
       context,
       listen: false,
     );
-    AuthResponse response = await appAuthProvider.register(
+    AuthResponse response = await appAuthProvider.signIn(
       emailController.text,
       passwordController.text,
-      nameController.text,
-      phoneController.text,
     );
 
     if (response.success == true) {
@@ -156,7 +111,6 @@ class _AppFormState extends State<AppForm> {
     });
   }
 
-
   bool validatForm() {
     return _formKey.currentState?.validate() ?? false;
   }
@@ -164,9 +118,7 @@ class _AppFormState extends State<AppForm> {
   void handelError(AuthResponse response) {
     String errorMessage;
     if (response.failure == AuthFailure.weakPassword) {
-      errorMessage = 'Weak Password';
-    } else if (response.failure == AuthFailure.emailAlreadyExist) {
-      errorMessage = 'Email Already Exist';
+      errorMessage = 'Wrong Email or Password';
     } else {
       errorMessage = 'Something Went Wrong';
     }

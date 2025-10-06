@@ -22,6 +22,8 @@ class AppThemeProvider extends ChangeNotifier {
     return _themeMode;
   }
 
+
+
   void changeTheme(ThemeMode newTheme) {
     _themeMode = newTheme;
     AppSharedPreferences.saveTheme(_themeMode);

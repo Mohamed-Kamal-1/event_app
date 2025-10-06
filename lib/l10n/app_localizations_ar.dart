@@ -86,4 +86,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get passwordMust6Char => 'كلمة المرور يجب ألا تقل عن 6 أحرف';
+
+  @override
+  String get or => 'or';
 }

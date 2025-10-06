@@ -7,7 +7,8 @@ class AppTheme {
   static ThemeData lightTheme = ThemeData(
     // canvasColor: AppColor.gold,
     appBarTheme: AppBarTheme(backgroundColor: AppColor.whitePrimaryColor),
-    scaffoldBackgroundColor: AppColor.whitePrimaryColor,
+    // scaffoldBackgroundColor: AppColor.whitePrimaryColor,
+    scaffoldBackgroundColor: Colors.brown,
     textTheme: TextTheme(
       titleMedium: GoogleFonts.inter(
         fontSize: 20,

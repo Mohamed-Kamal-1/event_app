@@ -209,7 +209,7 @@ abstract class AppLocalizations {
   /// No description provided for @doNotHaveAccount.
   ///
   /// In en, this message translates to:
-  /// **'Don’t Have Account'**
+  /// **'Don’t Have Account ?'**
   String get doNotHaveAccount;
 
   /// No description provided for @loginWithGoogle.
@@ -253,6 +253,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Password must be at least 6 characters'**
   String get passwordMust6Char;
+
+  /// No description provided for @or.
+  ///
+  /// In en, this message translates to:
+  /// **'or'**
+  String get or;
 }
 
 class _AppLocalizationsDelegate

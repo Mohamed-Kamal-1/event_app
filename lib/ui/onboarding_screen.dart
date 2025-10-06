@@ -2,21 +2,24 @@ import 'package:evently_app/core/colors/app_color.dart';
 import 'package:evently_app/core/images/app_image.dart';
 import 'package:evently_app/core/routes/app_routes.dart';
 import 'package:evently_app/logic/switch_language_and_theme/switch_theme.dart';
+import 'package:evently_app/providers/app_theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../l10n/app_localizations.dart';
 import '../logic/switch_language_and_theme/switch_language.dart';
 
 class OnboardingScreen extends StatefulWidget {
-
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
+  bool isDarkTheme = false;
+
   @override
   Widget build(BuildContext context) {
-
+    AppThemeProvider appThemeProvider = Provider.of<AppThemeProvider>(context);
 
     TextTheme textTheme = Theme.of(context).textTheme;
     AppLocalizations? appLocale = AppLocalizations.of(context);
@@ -38,7 +41,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Image.asset(
-              AppImage.midOnboarding,
+              (appThemeProvider.getSelectedThemMode() == ThemeMode.dark)
+                  ? AppImage.darkMidOnboarding
+                  : AppImage.midOnboarding,
               fit: BoxFit.cover,
               width: double.infinity,
               height: MediaQuery.of(context).size.height * 0.429,
@@ -74,7 +79,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           AppSwitchLanguage(),
                         ],
                       ),
-                      SizedBox(height: 16,),
+                      SizedBox(height: 16),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -98,7 +103,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, AppRoutes.RegistrScreen.route);
+                      Navigator.pushNamed(
+                        context,
+                        AppRoutes.RegistrScreen.name,
+                      );
                     },
                     child: Text(
                       appLocale.letsStart,
@@ -111,7 +119,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ],
               ),
             ),
-
           ],
         ),
       ),

@@ -3,23 +3,26 @@ import 'package:evently_app/database/model/app_user.dart';
 
 class UserDao{
   static final _db = FirebaseFirestore.instance;
-  static CollectionReference<AppUser> getUserCollection(){
+
+
+  static CollectionReference<AppUser> _getUserCollection(){
     return _db.collection('users').withConverter<AppUser>(fromFirestore: (
         snapshot, options) => AppUser.fromMAp(snapshot.data())
 
       ,toFirestore: (user, options) =>user.toMap(),);
   }
+
+
   static Future<void> addUser(AppUser user) async {
 
-  var docReference = await getUserCollection()
+  var docReference = await _getUserCollection()
       .doc(user.userId)
       .set(user);
   }
 
-  void getUserById(String userId)async{
-    var doc = await _db.collection('users').doc(userId).get();
-
-    AppUser user = AppUser.fromMAp(doc.data());
+  static Future<AppUser?> getUserById(String? uid) async{
+   var doc = await _getUserCollection().doc(uid).get();
+   return doc.data();
   }
 
 

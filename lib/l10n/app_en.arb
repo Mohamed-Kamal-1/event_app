@@ -19,7 +19,7 @@
   "alreadyHaveAccount": "Already Have Account?",
   "login": "Login ",
   "forgetPassword": "Forget Password",
-  "doNotHaveAccount": "Don’t Have Account",
+  "doNotHaveAccount": "Don’t Have Account ?",
   "loginWithGoogle": "Login With Google",
   "resetPassword": "Reset Password",
 
@@ -27,7 +27,8 @@
   "pleaseEnter":"Please Enter",
   "pleaseEnterValid":"Please Enter valid ",
   "passwordsDoesNotMatch" : "Passwords does not match",
-  "passwordMust6Char" : "Password must be at least 6 characters"
+  "passwordMust6Char" : "Password must be at least 6 characters",
+  "or": "or"
 
 
 }

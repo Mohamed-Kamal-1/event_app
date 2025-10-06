@@ -64,7 +64,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get forgetPassword => 'Forget Password';
 
   @override
-  String get doNotHaveAccount => 'Don’t Have Account';
+  String get doNotHaveAccount => 'Don’t Have Account ?';
 
   @override
   String get loginWithGoogle => 'Login With Google';
@@ -87,4 +87,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get passwordMust6Char => 'Password must be at least 6 characters';
+
+  @override
+  String get or => 'or';
 }
