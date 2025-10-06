@@ -25,6 +25,7 @@ class _AppFormLoginScreenState extends State<AppFormLoginScreen> {
 
   @override
   void dispose() {
+    super.dispose();
     passwordController.dispose();
     emailController.dispose();
   }

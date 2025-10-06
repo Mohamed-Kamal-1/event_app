@@ -32,6 +32,7 @@ class _AppFormState extends State<AppForm> {
   bool isLoading = false;
   @override
   void dispose() {
+    super.dispose();
     nameController.dispose();
     emailController.dispose();
     phoneController.dispose();

@@ -1,8 +1,7 @@
 import 'package:evently_app/core/colors/app_color.dart';
 import 'package:evently_app/core/images/app_image.dart';
 import 'package:evently_app/core/routes/app_routes.dart';
-import 'package:evently_app/ui/register/app_form_field.dart';
-import 'package:evently_app/ui/register/validationForm/validators.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
