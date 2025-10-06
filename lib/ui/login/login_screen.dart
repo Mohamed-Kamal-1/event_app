@@ -69,8 +69,9 @@ class LoginScreen extends StatelessWidget {
               ),
               Row(
                 children: [
-                Divider(color: AppColor.bluePrimaryColor,height: 5,),
-                // Text(appLocale.or),
+                Text(appLocale.or),
+
+                // Divider(color: AppColor.whitePrimaryColor,height: 10,),
                 // Divider(),
 
                 ],
