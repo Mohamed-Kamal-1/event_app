@@ -34,6 +34,9 @@ class AppTheme {
     ),
 
     inputDecorationTheme: InputDecorationThemeData(
+      filled:true ,
+      focusColor: AppColor.bluePrimaryColor,
+      fillColor: AppColor.bluePrimaryColor,
       floatingLabelBehavior: FloatingLabelBehavior.auto,
       border: OutlineInputBorder(
         borderSide: BorderSide(color: AppColor.bluePrimaryColor, width: 1.5),
@@ -100,6 +103,9 @@ class AppTheme {
       ),
     ),
     inputDecorationTheme: InputDecorationThemeData(
+      // filled:true ,
+      focusColor: AppColor.bluePrimaryColor,
+      // fillColor: AppColor.bluePrimaryColor,
       floatingLabelBehavior: FloatingLabelBehavior.auto,
       border: OutlineInputBorder(
         borderSide: BorderSide(color: AppColor.bluePrimaryColor, width: 1.5),

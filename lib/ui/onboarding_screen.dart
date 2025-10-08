@@ -19,7 +19,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    AppThemeProvider appThemeProvider = Provider.of<AppThemeProvider>(context);
+    // AppThemeProvider appThemeProvider = Provider.of<AppThemeProvider>(context);
 
     TextTheme textTheme = Theme.of(context).textTheme;
     AppLocalizations? appLocale = AppLocalizations.of(context);
@@ -41,9 +41,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Image.asset(
-              (appThemeProvider.getSelectedThemMode() == ThemeMode.dark)
-                  ? AppImage.darkMidOnboarding
-                  : AppImage.midOnboarding,
+              // (appThemeProvider.getSelectedThemMode() == ThemeMode.dark)
+              //     ? AppImage.darkMidOnboarding
+                  AppImage.midOnboarding,
               fit: BoxFit.cover,
               width: double.infinity,
               height: MediaQuery.of(context).size.height * 0.429,
@@ -105,7 +105,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     onPressed: () {
                       Navigator.pushNamed(
                         context,
-                        AppRoutes.RegistrScreen.name,
+                        AppRoutes.LoginScreen.name,
                       );
                     },
                     child: Text(

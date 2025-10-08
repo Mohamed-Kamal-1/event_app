@@ -7,7 +7,7 @@ class AppSharedPreferences {
 
   AppSharedPreferences._();
 
-  static late SharedPreferences _sharedPreferences;
+  static late SharedPreferences? _sharedPreferences;
 
   static AppSharedPreferences? appSharedPreferences;
 
@@ -23,10 +23,10 @@ class AppSharedPreferences {
 
   static Future<void> saveTheme(ThemeMode mode) async {
     var themeName = (mode == ThemeMode.light) ? _light : _dark;
-    await _sharedPreferences.setString(themeKey, themeName);
+    await _sharedPreferences?.setString(themeKey, themeName);
   }
      ThemeMode? getTheme() {
-    var themeName = _sharedPreferences.getString(themeKey);
+    var themeName = _sharedPreferences?.getString(themeKey);
     return themeName == _dark ? ThemeMode.dark : ThemeMode.light;
   }
 
@@ -34,11 +34,11 @@ class AppSharedPreferences {
 
 
    Future<void> saveLanguage(String language) async {
-    _sharedPreferences.setString(AppSharedPreferences.languageKey, language);
+    _sharedPreferences?.setString(AppSharedPreferences.languageKey, language);
   }
 
    String? getLanguage(){
-    return _sharedPreferences.getString(AppSharedPreferences.languageKey) ?? 'en';
+    return _sharedPreferences?.getString(AppSharedPreferences.languageKey) ?? 'en';
   }
 
   static AppSharedPreferences? getInstance() {

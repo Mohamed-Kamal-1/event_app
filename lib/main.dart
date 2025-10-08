@@ -15,10 +15,10 @@ import 'l10n/app_localizations.dart';
 
 void main()async{
   WidgetsFlutterBinding.ensureInitialized();
+  await AppSharedPreferences.init();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-   await AppSharedPreferences.init();
 
    runApp(MultiProvider(
       providers: [
@@ -41,6 +41,7 @@ class MainApp extends StatelessWidget {
     AppLanguageProvider appLanguageProvider = Provider.of<AppLanguageProvider>(context,);
     AppThemeProvider appThemeProvider = Provider.of<AppThemeProvider>(context);
 
+
     return MaterialApp(
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
@@ -49,7 +50,7 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      initialRoute: AppRoutes.LoginScreen.name,
+      initialRoute: AppRoutes.OnboardingScreen.name,
       routes: {
         AppRoutes.OnboardingScreen.name : (context) => OnboardingScreen(),
         AppRoutes.RegistrScreen.name : (context) => RegistrScreen(),

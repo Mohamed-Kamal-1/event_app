@@ -5,6 +5,23 @@ import 'package:flutter/cupertino.dart';
 
 class AppAuthProvider extends ChangeNotifier {
   final _authService = FirebaseAuth.instance;
+  User? fbAuthUser = FirebaseAuth.instance.currentUser;
+  AppUser? databaseUser;
+
+
+  Future<void> retriveData() async {
+    databaseUser = await UserDao.getUserById(fbAuthUser?.uid);
+  }
+  bool isLoggedInBefore(){
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if(user == null ){
+      return false;
+    }
+
+    return true;
+  }
+
   Future<AuthResponse> register(
     String email,
     String pass,
@@ -65,7 +82,6 @@ class AppAuthProvider extends ChangeNotifier {
       if (e.code == AuthFailure.invalidCredentials.code) {
         return AuthResponse(success: false, failure: AuthFailure.invalidCredentials);
       }
-    } catch (e) {
     }
       return AuthResponse(success: false, failure: AuthFailure.general);
   }
