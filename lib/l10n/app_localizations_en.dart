@@ -89,5 +89,5 @@ class AppLocalizationsEn extends AppLocalizations {
   String get passwordMust6Char => 'Password must be at least 6 characters';
 
   @override
-  String get or => 'or';
+  String get or => 'Or';
 }

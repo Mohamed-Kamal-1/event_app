@@ -1,5 +1,6 @@
 import 'package:evently_app/SharedPreferences/app_shared_preferences.dart';
 import 'package:evently_app/providers/app_auth_registered_provider.dart';
+import 'package:evently_app/providers/app_auth_signIn_provider.dart';
 import 'package:evently_app/providers/app_language_provider.dart';
 import 'package:evently_app/providers/app_theme_provider.dart';
 import 'package:evently_app/ui/login/login_screen.dart';
@@ -25,6 +26,7 @@ void main()async{
       ChangeNotifierProvider(create: (context) => AppLanguageProvider()),
       ChangeNotifierProvider(create: (context) => AppThemeProvider()),
       ChangeNotifierProvider(create: (context) => AppAuthProvider()),
+      // ChangeNotifierProvider(create: (context) => AppAuthProviderWithGoogle()),
       ],
       child: MainApp())
 

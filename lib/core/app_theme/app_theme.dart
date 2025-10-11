@@ -8,7 +8,7 @@ class AppTheme {
     // canvasColor: AppColor.gold,
     appBarTheme: AppBarTheme(backgroundColor: AppColor.whitePrimaryColor),
     // scaffoldBackgroundColor: AppColor.whitePrimaryColor,
-    scaffoldBackgroundColor: Colors.brown,
+    scaffoldBackgroundColor: AppColor.whitePrimaryColor,
     textTheme: TextTheme(
       titleMedium: GoogleFonts.inter(
         fontSize: 20,

@@ -257,7 +257,7 @@ abstract class AppLocalizations {
   /// No description provided for @or.
   ///
   /// In en, this message translates to:
-  /// **'or'**
+  /// **'Or'**
   String get or;
 }
 

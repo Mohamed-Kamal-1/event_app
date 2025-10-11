@@ -1,7 +1,6 @@
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:evently_app/core/icons/app_icon.dart';
 import 'package:evently_app/providers/app_language_provider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -11,7 +10,8 @@ enum Languages { english, arabic }
 
 class AppSwitchLanguage extends StatefulWidget {
   static List<Languages> languages = [Languages.english, Languages.arabic];
-
+  double height;
+  AppSwitchLanguage({this.height = 50.0});
   @override
   State<AppSwitchLanguage> createState() => _AppSwitchLanguageState();
 }
@@ -37,6 +37,7 @@ class _AppSwitchLanguageState extends State<AppSwitchLanguage> {
     return AnimatedToggleSwitch<Languages>.rolling(
       animationCurve: Curves.fastOutSlowIn,
 
+      height: widget.height,
       current: selectedLanguage,
       values: AppSwitchLanguage.languages,
 
