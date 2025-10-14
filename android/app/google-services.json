@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "233691880915-7qjhv2308uch266up1jdo927vu4ukqhs.apps.googleusercontent.com",
+          "client_id": "233691880915-qukifk2c2hptco3ft630993lj4020vvk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.event_app",
+            "certificate_hash": "6d92e166b60554a77d32e503eb9b7a9401091e51"
+          }
+        },
+        {
+          "client_id": "233691880915-1ol25j0dacpp908p7fh6ljfougm9lf3h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,14 +35,50 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "233691880915-7qjhv2308uch266up1jdo927vu4ukqhs.apps.googleusercontent.com",
+              "client_id": "233691880915-1ol25j0dacpp908p7fh6ljfougm9lf3h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "233691880915-o9svogaafd7htfoused7vaop50pn089s.apps.googleusercontent.com",
+              "client_id": "233691880915-hu3u52fgpf098257ike6gsqqg8dl4rcd.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.eventApp"
+                "bundle_id": "com.example.my"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:233691880915:android:a424151ba3b1296f342326",
+        "android_client_info": {
+          "package_name": "com.example.my"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "233691880915-1ol25j0dacpp908p7fh6ljfougm9lf3h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAo6P2vsyXXVVe4kTm5_hI0PCIZczJJz5w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "233691880915-1ol25j0dacpp908p7fh6ljfougm9lf3h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "233691880915-hu3u52fgpf098257ike6gsqqg8dl4rcd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.my"
               }
             }
           ]

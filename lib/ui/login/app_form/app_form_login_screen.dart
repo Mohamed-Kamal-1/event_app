@@ -1,5 +1,10 @@
 import 'package:evently_app/core/colors/app_color.dart';
+import 'package:evently_app/core/routes/app_routes.dart';
+import 'package:evently_app/database/model/app_user.dart';
+import 'package:evently_app/database/model/user_dao.dart';
 import 'package:evently_app/providers/app_auth_registered_provider.dart';
+import 'package:evently_app/ui/home_screen/home_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -33,6 +38,7 @@ class _AppFormLoginScreenState extends State<AppFormLoginScreen> {
   @override
   Widget build(BuildContext context) {
     AppLocalizations? appLocale = AppLocalizations.of(context);
+    AppAuthProvider appAuthProvider = Provider.of<AppAuthProvider>(context);
     return Form(
       key: _formKey,
       child: Column(
@@ -61,8 +67,18 @@ class _AppFormLoginScreenState extends State<AppFormLoginScreen> {
           ElevatedButton(
             onPressed: (isLoading)
                 ? null
-                : () {
-                    // login();
+                : () async {
+                    login();
+                    print(' appAUth is : ${appAuthProvider.isLoggedInBefore()}');
+                    String? userId = FirebaseAuth.instance.currentUser?.uid;
+                    AppUser? user =  await UserDao.getUserById(userId);
+                    print('=================================================================');
+                    print("user?.userId is : ${user?.userId}");
+                    print("user?.name is : ${user?.name}");
+                    print("user?.email is : ${user?.email}");
+                    print("user?.phone is : ${user?.phone}");
+                    print('=================================================================');
+                    // Navigator.pushReplacementNamed(context, AppRoutes.HomeScreen.name);
                   },
             child: (isLoading)
                 ? Row(
@@ -82,7 +98,7 @@ class _AppFormLoginScreenState extends State<AppFormLoginScreen> {
       ),
     );
   }
-
+// save user when login untile inputs is empty
   void login() async {
     if (validatForm() == false) {
       return;

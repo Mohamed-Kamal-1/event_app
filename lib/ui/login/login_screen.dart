@@ -11,6 +11,8 @@ import 'package:provider/provider.dart';
 import '../../core/colors/app_color.dart';
 import '../../core/images/app_image.dart';
 import '../../core/routes/app_routes.dart';
+import '../../database/model/app_user.dart';
+import '../../database/model/user_dao.dart';
 import '../../l10n/app_localizations.dart';
 import '../../providers/app_auth_registered_provider.dart';
 import '../../providers/app_auth_signIn_provider.dart';
@@ -22,80 +24,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
-
-// // **ملاحظة:** يجب أن تكون هذه الدالة ضمن Widget (عادةً StatefulWidget)
-// // للوصول إلى `mounted` و `ScaffoldMessenger.of(context)`.
-//
-// // 1. **تعريف كائن GoogleSignIn:** يفضل تعريفه مرة واحدة مع تحديد النطاقات
-//   final GoogleSignIn _googleSignIn = GoogleSignIn(
-//     scopes: <String>[
-//       'email', // نطاق ضروري لجلب البريد الإلكتروني
-//       'profile', // نطاق ضروري لجلب معلومات الملف الشخصي
-//     ],
-//   );
-//
-//   Future<void> _handleGoogleSignIn(BuildContext context, bool mounted) async {
-//     try {
-//       // 2. **بدء عملية تسجيل الدخول:** نستخدم .signIn() بعد تهيئة النطاقات
-//       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-//
-//       if (googleUser == null) {
-//         print('User cancelled the Google sign-in process.');
-//         return;
-//       }
-//
-//       // 3. **جلب رموز المصادقة:**
-//       final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-//
-//       // 💡 **تحقق قبل الاستخدام:** يجب التأكد من وجود الـ idToken على الأقل
-//       if (googleAuth.idToken == null) {
-//         print('Error: Failed to retrieve ID Token. Check Firebase setup.');
-//         // يمكنك إظهار رسالة خطأ للمستخدم هنا
-//         return;
-//       }
-//
-//       // 4. **إنشاء بيانات اعتماد Firebase:**
-//       final AuthCredential credential = GoogleAuthProvider.credential(
-//         // ⬅️ تم تصحيح الخطأ هنا. القيمة الصحيحة هي googleAuth.accessToken
-//         accessToken: googleAuth.accessToken,
-//         idToken: googleAuth.idToken,
-//       );
-//
-//       // 5. **تسجيل الدخول إلى Firebase:**
-//       final UserCredential userCredential = await FirebaseAuth.instance
-//           .signInWithCredential(credential);
-//
-//       if (userCredential.user != null && mounted) {
-//         print("Sign-in successful: ${userCredential.user?.displayName}");
-//         // Navigator.pushReplacementNamed(context, AppRoutes.HomeScreen.name);
-//
-//         // مثال: إظهار رسالة نجاح
-//         ScaffoldMessenger.of(context).showSnackBar(
-//           SnackBar(content: Text('تم تسجيل الدخول بنجاح!')),
-//         );
-//       }
-//     } catch (e) {
-//       print("Error during Google sign-in: $e");
-//       if (mounted) {
-//         ScaffoldMessenger.of(context).showSnackBar(
-//           SnackBar(
-//               content: Text(
-//                   'فشل تسجيل الدخول عبر Google. الرجاء التأكد من إعدادات SHA-1 أو الاتصال بالإنترنت.')),
-//         );
-//       }
-//     }
-//   }
-//
-
-
-
-
-
+  final auth = AuthSignIn();
   @override
   Widget build(BuildContext context) {
 
-    // AppAuthProviderWithGoogle appAuthProviderWithGoogle = Provider.of<AppAuthProviderWithGoogle>(context);
     TextTheme textTheme = Theme.of(context).textTheme;
     AppLocalizations? appLocale = AppLocalizations.of(context);
 
@@ -116,7 +48,6 @@ class _LoginScreenState extends State<LoginScreen> {
         padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
         child: SingleChildScrollView(
           child: Column(
-            // crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Column(
                 children: [
@@ -156,21 +87,20 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                Text(appLocale.or),
-
                   Container(color: AppColor.offWhite,
                   margin: EdgeInsets.symmetric(
-                      horizontal: 20
+                      horizontal: 15
                   ),
                   height: 1.5,
                   width: 129,
                   ),
                   Text(appLocale.or,style: textTheme.titleSmall?.copyWith(
+                    fontSize: 21,
                     color: AppColor.bluePrimaryColor
                   )),
                   Container(color: AppColor.offWhite,
                     margin: EdgeInsets.symmetric(
-                        horizontal: 20
+                        horizontal: 15
                     ),
                   height: 1.5,
                   width: 129,
@@ -180,8 +110,18 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(height: 24,),
               InkWell(
-                onTap: (){
+                onTap: () async {
 
+               await  auth.signinwithGoogle();
+               String? userId = FirebaseAuth.instance.currentUser?.uid;
+               AppUser? user =  await UserDao.getUserById(userId);
+               print('=================================================================');
+               print("user?.userId is : ${user?.userId}");
+               print("user?.name is : ${user?.name}");
+               print("user?.email is : ${user?.email}");
+               print("user?.phone is : ${user?.phone}");
+               print('=================================================================');
+               Navigator.pushReplacementNamed(context, AppRoutes.HomeScreen.name);
                 },
                 child: Container(
                   height: 57.67,
@@ -205,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 24,),
+              SizedBox(height: 20,),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.26,
                   child: AppSwitchLanguage()),

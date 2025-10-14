@@ -3,6 +3,7 @@ import 'package:evently_app/providers/app_auth_registered_provider.dart';
 import 'package:evently_app/providers/app_auth_signIn_provider.dart';
 import 'package:evently_app/providers/app_language_provider.dart';
 import 'package:evently_app/providers/app_theme_provider.dart';
+import 'package:evently_app/ui/home_screen/home_screen.dart';
 import 'package:evently_app/ui/login/login_screen.dart';
 import 'package:evently_app/ui/onboarding_screen.dart';
 import 'package:evently_app/ui/register/registr_screen.dart';
@@ -14,24 +15,20 @@ import 'core/routes/app_routes.dart';
 import 'firebase_options.dart';
 import 'l10n/app_localizations.dart';
 
-void main()async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppSharedPreferences.init();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-   runApp(MultiProvider(
+  runApp(
+    MultiProvider(
       providers: [
-      ChangeNotifierProvider(create: (context) => AppLanguageProvider()),
-      ChangeNotifierProvider(create: (context) => AppThemeProvider()),
-      ChangeNotifierProvider(create: (context) => AppAuthProvider()),
-      // ChangeNotifierProvider(create: (context) => AppAuthProviderWithGoogle()),
+        ChangeNotifierProvider(create: (context) => AppLanguageProvider()),
+        ChangeNotifierProvider(create: (context) => AppThemeProvider()),
+        ChangeNotifierProvider(create: (context) => AppAuthProvider()),
       ],
-      child: MainApp())
-
-
-
+      child: MainApp(),
+    ),
   );
 }
 
@@ -40,27 +37,29 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppLanguageProvider appLanguageProvider = Provider.of<AppLanguageProvider>(context,);
+    AppLanguageProvider appLanguageProvider = Provider.of<AppLanguageProvider>(
+      context,
+    );
     AppThemeProvider appThemeProvider = Provider.of<AppThemeProvider>(context);
-
+    AppAuthProvider appAuthProvider = Provider.of<AppAuthProvider>(context);
 
     return MaterialApp(
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      themeMode:appThemeProvider.getSelectedThemMode() ,
+      themeMode: appThemeProvider.getSelectedThemMode(),
       locale: Locale(appLanguageProvider.getAppLanguage()),
       debugShowCheckedModeBanner: false,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      initialRoute: AppRoutes.OnboardingScreen.name,
+      initialRoute: (appAuthProvider.isLoggedInBefore())
+          ? AppRoutes.OnboardingScreen.name
+          : AppRoutes.LoginScreen.name,
       routes: {
-        AppRoutes.OnboardingScreen.name : (context) => OnboardingScreen(),
-        AppRoutes.RegistrScreen.name : (context) => RegistrScreen(),
-        AppRoutes.LoginScreen.name : (context) => LoginScreen(),
+        AppRoutes.OnboardingScreen.name: (context) => OnboardingScreen(),
+        AppRoutes.RegistrScreen.name: (context) => RegistrScreen(),
+        AppRoutes.LoginScreen.name: (context) => LoginScreen(),
+        AppRoutes.HomeScreen.name: (context) => HomeScreen(),
       },
     );
   }
 }
-
-
-

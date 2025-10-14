@@ -28,7 +28,10 @@
   "pleaseEnterValid":"Please Enter valid ",
   "passwordsDoesNotMatch" : "Passwords does not match",
   "passwordMust6Char" : "Password must be at least 6 characters",
-  "or": "Or"
+  "or": "Or",
 
+  "commentHomeScreen" : "commentHomeScreen",
+  "en" : "EN",
+  "ar" : "AR"
 
 }

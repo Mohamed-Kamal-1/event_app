@@ -89,4 +89,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get or => 'Or';
+
+  @override
+  String get commentHomeScreen => 'commentHomeScreen';
+
+  @override
+  String get en => 'EN';
+
+  @override
+  String get ar => 'AR';
 }

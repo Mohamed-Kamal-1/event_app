@@ -259,6 +259,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Or'**
   String get or;
+
+  /// No description provided for @commentHomeScreen.
+  ///
+  /// In en, this message translates to:
+  /// **'commentHomeScreen'**
+  String get commentHomeScreen;
+
+  /// No description provided for @en.
+  ///
+  /// In en, this message translates to:
+  /// **'EN'**
+  String get en;
+
+  /// No description provided for @ar.
+  ///
+  /// In en, this message translates to:
+  /// **'AR'**
+  String get ar;
 }
 
 class _AppLocalizationsDelegate

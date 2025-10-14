@@ -7,15 +7,19 @@ class AppAuthProvider extends ChangeNotifier {
   final _authService = FirebaseAuth.instance;
   User? fbAuthUser = FirebaseAuth.instance.currentUser;
   AppUser? databaseUser;
-
-
-  Future<void> retriveData() async {
-    databaseUser = await UserDao.getUserById(fbAuthUser?.uid);
+  AppAuthProvider(){
+    retrieveUserFormDatabase();
   }
-  bool isLoggedInBefore(){
+  Future<void> retrieveUserFormDatabase() async {
+    if (fbAuthUser != null) {
+      databaseUser = await UserDao.getUserById(fbAuthUser?.uid);
+    }
+  }
+
+  bool isLoggedInBefore() {
     User? user = FirebaseAuth.instance.currentUser;
 
-    if(user == null ){
+    if (user == null) {
       return false;
     }
 
@@ -27,10 +31,8 @@ class AppAuthProvider extends ChangeNotifier {
     String pass,
     String name,
     String phone,
-
   ) async {
     try {
-
       final credential = await _authService.createUserWithEmailAndPassword(
         email: email,
         password: pass,
@@ -39,12 +41,11 @@ class AppAuthProvider extends ChangeNotifier {
         userId: credential.user?.uid,
         email: email,
         name: name,
-        phone: phone
+        phone: phone,
       );
 
       await UserDao.addUser(user);
-      return AuthResponse(success: true, cred: credential,user: user);
-
+      return AuthResponse(success: true, cred: credential, user: user);
     } on FirebaseAuthException catch (e) {
       if (e.code == AuthFailure.weakPassword.code) {
         return AuthResponse(success: false, failure: AuthFailure.weakPassword);
@@ -61,14 +62,8 @@ class AppAuthProvider extends ChangeNotifier {
     }
   }
 
-
-  Future<AuthResponse> signIn(
-      String email,
-      String pass,
-
-      ) async {
+  Future<AuthResponse> signIn(String email, String pass) async {
     try {
-
       final credential = await _authService.signInWithEmailAndPassword(
         email: email,
         password: pass,
@@ -76,17 +71,17 @@ class AppAuthProvider extends ChangeNotifier {
 
       AppUser? user = await UserDao.getUserById(credential.user!.uid);
 
-      return AuthResponse(success: true, cred: credential,user: user);
-
+      return AuthResponse(success: true, cred: credential, user: user);
     } on FirebaseAuthException catch (e) {
       if (e.code == AuthFailure.invalidCredentials.code) {
-        return AuthResponse(success: false, failure: AuthFailure.invalidCredentials);
+        return AuthResponse(
+          success: false,
+          failure: AuthFailure.invalidCredentials,
+        );
       }
     }
-      return AuthResponse(success: false, failure: AuthFailure.general);
+    return AuthResponse(success: false, failure: AuthFailure.general);
   }
-
-
 }
 
 class AuthResponse {
@@ -95,7 +90,7 @@ class AuthResponse {
   UserCredential? cred;
   AppUser? user;
 
-  AuthResponse({required this.success, this.failure, this.cred,this.user});
+  AuthResponse({required this.success, this.failure, this.cred, this.user});
 }
 
 enum AuthFailure {
