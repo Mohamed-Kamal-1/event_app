@@ -113,14 +113,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 onTap: () async {
 
                await  auth.signinwithGoogle();
-               String? userId = FirebaseAuth.instance.currentUser?.uid;
-               AppUser? user =  await UserDao.getUserById(userId);
-               print('=================================================================');
-               print("user?.userId is : ${user?.userId}");
-               print("user?.name is : ${user?.name}");
-               print("user?.email is : ${user?.email}");
-               print("user?.phone is : ${user?.phone}");
-               print('=================================================================');
                Navigator.pushReplacementNamed(context, AppRoutes.HomeScreen.name);
                 },
                 child: Container(
