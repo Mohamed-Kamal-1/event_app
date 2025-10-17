@@ -1,5 +1,5 @@
 import 'package:evently_app/core/colors/app_color.dart';
-import 'package:evently_app/providers/app_auth_registered_provider.dart';
+import 'package:evently_app/providers/app_auth_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

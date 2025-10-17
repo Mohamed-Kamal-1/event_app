@@ -6,8 +6,9 @@ import 'package:evently_app/providers/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../l10n/app_localizations.dart';
-import '../logic/switch_language_and_theme/switch_language.dart';
+import '../../l10n/app_localizations.dart';
+import '../../logic/switch_language_and_theme/switch_language.dart';
+import '../app_bar/event_appbar_Screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
   @override
@@ -24,17 +25,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     TextTheme textTheme = Theme.of(context).textTheme;
     AppLocalizations? appLocale = AppLocalizations.of(context);
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(AppImage.primaryLogo),
-            SizedBox(width: 10),
-            Text(appLocale!.evently, style: textTheme.headlineMedium),
-          ],
-        ),
-      ),
+      appBar: EventAppBarScreen(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -55,7 +46,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    appLocale.personalizeYourExperience,
+                    appLocale!.personalizeYourExperience,
                     style: textTheme.titleMedium?.copyWith(
                       color: AppColor.bluePrimaryColor,
                     ),

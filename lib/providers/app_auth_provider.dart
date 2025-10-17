@@ -2,14 +2,20 @@ import 'package:evently_app/database/model/app_user.dart';
 import 'package:evently_app/database/model/user_dao.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AppAuthProvider extends ChangeNotifier {
   final _authService = FirebaseAuth.instance;
   User? fbAuthUser = FirebaseAuth.instance.currentUser;
+
+  final _googleSignIn = GoogleSignIn.instance;
+
   AppUser? databaseUser;
-  AppAuthProvider(){
+
+  AppAuthProvider() {
     retrieveUserFormDatabase();
   }
+
   Future<void> retrieveUserFormDatabase() async {
     if (fbAuthUser != null) {
       databaseUser = await UserDao.getUserById(fbAuthUser?.uid);
@@ -81,6 +87,23 @@ class AppAuthProvider extends ChangeNotifier {
       }
     }
     return AuthResponse(success: false, failure: AuthFailure.general);
+  }
+
+
+
+
+  Future<UserCredential?> signInWithGoogle() async {
+    try {
+      await _googleSignIn.initialize();
+      final account = await _googleSignIn.authenticate();
+      final auth = account.authentication;
+      final cred = GoogleAuthProvider.credential(idToken: auth.idToken);
+       final credential = _authService.signInWithCredential(cred);
+
+      return await credential;
+    } catch (e) {
+      return null;
+    }
   }
 }
 

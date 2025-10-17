@@ -14,7 +14,7 @@ import '../../core/routes/app_routes.dart';
 import '../../database/model/app_user.dart';
 import '../../database/model/user_dao.dart';
 import '../../l10n/app_localizations.dart';
-import '../../providers/app_auth_registered_provider.dart';
+import '../../providers/app_auth_provider.dart';
 import '../../providers/app_auth_signIn_provider.dart';
 import  'app_form/app_form_login_screen.dart';
 

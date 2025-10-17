@@ -1,11 +1,12 @@
 import 'package:evently_app/SharedPreferences/app_shared_preferences.dart';
-import 'package:evently_app/providers/app_auth_registered_provider.dart';
+import 'package:evently_app/providers/app_auth_provider.dart';
 import 'package:evently_app/providers/app_auth_signIn_provider.dart';
 import 'package:evently_app/providers/app_language_provider.dart';
 import 'package:evently_app/providers/app_theme_provider.dart';
+import 'package:evently_app/ui/create_event_screen.dart';
 import 'package:evently_app/ui/home_screen/home_screen.dart';
 import 'package:evently_app/ui/login/login_screen.dart';
-import 'package:evently_app/ui/onboarding_screen.dart';
+import 'package:evently_app/ui/onboarding/onboarding_screen.dart';
 import 'package:evently_app/ui/register/registr_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -59,6 +60,7 @@ class MainApp extends StatelessWidget {
         AppRoutes.RegistrScreen.name: (context) => RegistrScreen(),
         AppRoutes.LoginScreen.name: (context) => LoginScreen(),
         AppRoutes.HomeScreen.name: (context) => HomeScreen(),
+        AppRoutes.CreateEventScreen.name: (context) => CreateEventScreen(),
       },
     );
   }

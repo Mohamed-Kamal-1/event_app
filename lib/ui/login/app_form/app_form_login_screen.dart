@@ -2,7 +2,7 @@ import 'package:evently_app/core/colors/app_color.dart';
 import 'package:evently_app/core/routes/app_routes.dart';
 import 'package:evently_app/database/model/app_user.dart';
 import 'package:evently_app/database/model/user_dao.dart';
-import 'package:evently_app/providers/app_auth_registered_provider.dart';
+import 'package:evently_app/providers/app_auth_provider.dart';
 import 'package:evently_app/ui/home_screen/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -69,16 +69,7 @@ class _AppFormLoginScreenState extends State<AppFormLoginScreen> {
                 ? null
                 : () async {
                     login();
-                    print(' appAUth is : ${appAuthProvider.isLoggedInBefore()}');
-                    String? userId = FirebaseAuth.instance.currentUser?.uid;
-                    AppUser? user =  await UserDao.getUserById(userId);
-                    print('=================================================================');
-                    print("user?.userId is : ${user?.userId}");
-                    print("user?.name is : ${user?.name}");
-                    print("user?.email is : ${user?.email}");
-                    print("user?.phone is : ${user?.phone}");
-                    print('=================================================================');
-                    // Navigator.pushReplacementNamed(context, AppRoutes.HomeScreen.name);
+                    Navigator.pushReplacementNamed(context, AppRoutes.HomeScreen.name);
                   },
             child: (isLoading)
                 ? Row(
