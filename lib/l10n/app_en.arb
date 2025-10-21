@@ -32,6 +32,15 @@
 
   "commentHomeScreen" : "commentHomeScreen",
   "en" : "EN",
-  "ar" : "AR"
+  "ar" : "AR",
+  "all": "All",
+  "sport" : "Sport",
+  "gaming" : "Gaming",
+  "workshop" : "Workshop",
+  "birthday" : "Birthday",
+  "home" : "Home",
+  "map" : "Map",
+  "love" : "Love",
+  "profile" : "Profile"
 
 }

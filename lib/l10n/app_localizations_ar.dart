@@ -98,4 +98,31 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get ar => 'AR';
+
+  @override
+  String get all => 'الكل';
+
+  @override
+  String get sport => 'رياضة';
+
+  @override
+  String get gaming => 'ألعاب';
+
+  @override
+  String get workshop => 'ورشة عمل';
+
+  @override
+  String get birthday => 'عيد ميلاد';
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get map => 'Map';
+
+  @override
+  String get love => 'Love';
+
+  @override
+  String get profile => 'Profile';
 }

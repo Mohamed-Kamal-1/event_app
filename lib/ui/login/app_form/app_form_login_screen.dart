@@ -68,8 +68,7 @@ class _AppFormLoginScreenState extends State<AppFormLoginScreen> {
             onPressed: (isLoading)
                 ? null
                 : () async {
-                    login();
-                    Navigator.pushReplacementNamed(context, AppRoutes.HomeScreen.name);
+                    await login();
                   },
             child: (isLoading)
                 ? Row(
@@ -89,8 +88,9 @@ class _AppFormLoginScreenState extends State<AppFormLoginScreen> {
       ),
     );
   }
-// save user when login untile inputs is empty
-  void login() async {
+
+  // save user when login untile inputs is empty
+  Future<void> login() async {
     if (validatForm() == false) {
       return;
     }
@@ -107,10 +107,15 @@ class _AppFormLoginScreenState extends State<AppFormLoginScreen> {
       passwordController.text,
     );
 
-    if (response.success == true) {
+    if (response.success == true && response.cred?.user?.uid != null) {
+     await appAuthProvider.loadUserAfterLogin(response.cred!.user!.uid);
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text('every thing is ok')));
+      Navigator.pushReplacementNamed(
+        context,
+        AppRoutes.HomeScreen.name,
+      );
     } else {
       handelError(response);
     }

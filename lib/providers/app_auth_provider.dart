@@ -5,21 +5,33 @@ import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AppAuthProvider extends ChangeNotifier {
-  final _authService = FirebaseAuth.instance;
-  User? fbAuthUser = FirebaseAuth.instance.currentUser;
-
+  late FirebaseAuth _authService = FirebaseAuth.instance;
+  User? _fbAuthUser = FirebaseAuth.instance.currentUser;
+  AppUser? _databaseUser;
   final _googleSignIn = GoogleSignIn.instance;
 
-  AppUser? databaseUser;
+  void authServiceAfterLogin(FirebaseAuth authServiceAfterLogin) {
+    _authService = authServiceAfterLogin;
+  }
 
   AppAuthProvider() {
     retrieveUserFormDatabase();
   }
 
   Future<void> retrieveUserFormDatabase() async {
-    if (fbAuthUser != null) {
-      databaseUser = await UserDao.getUserById(fbAuthUser?.uid);
+    if (_fbAuthUser != null) {
+      _databaseUser = await UserDao.getUserById(_fbAuthUser?.uid);
+      notifyListeners();
     }
+  }
+
+  Future<void> loadUserAfterLogin(String userId) async {
+    _databaseUser = await UserDao.getUserById(userId);
+    notifyListeners();
+  }
+
+  AppUser? getUser() {
+    return _databaseUser;
   }
 
   bool isLoggedInBefore() {
@@ -30,6 +42,13 @@ class AppAuthProvider extends ChangeNotifier {
     }
 
     return true;
+  }
+
+  void logout() {
+    _authService.signOut();
+    _fbAuthUser = null;
+    _databaseUser = null;
+    notifyListeners();
   }
 
   Future<AuthResponse> register(
@@ -89,22 +108,19 @@ class AppAuthProvider extends ChangeNotifier {
     return AuthResponse(success: false, failure: AuthFailure.general);
   }
 
-
-
-
-  Future<UserCredential?> signInWithGoogle() async {
-    try {
-      await _googleSignIn.initialize();
-      final account = await _googleSignIn.authenticate();
-      final auth = account.authentication;
-      final cred = GoogleAuthProvider.credential(idToken: auth.idToken);
-       final credential = _authService.signInWithCredential(cred);
-
-      return await credential;
-    } catch (e) {
-      return null;
-    }
-  }
+  // Future<UserCredential?> signInWithGoogle() async {
+  //   try {
+  //     await _googleSignIn.initialize();
+  //     final account = await _googleSignIn.authenticate();
+  //     final auth = account.authentication;
+  //     final cred = GoogleAuthProvider.credential(idToken: auth.idToken);
+  //     final credential = _authService.signInWithCredential(cred);
+  //
+  //     return await credential;
+  //   } catch (e) {
+  //     return null;
+  //   }
+  // }
 }
 
 class AuthResponse {

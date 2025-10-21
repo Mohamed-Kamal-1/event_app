@@ -45,3 +45,6 @@ flutter:
   assets:
     - assets/images/images_app/
     - assets/images/images_app/icon_app/
+    - assets/images/images_app/onBoarding_light/
+    - assets/images/images_app/onBoarding_dark/
+#    - assets/images/images_app/icon_app/bottom_navigation/

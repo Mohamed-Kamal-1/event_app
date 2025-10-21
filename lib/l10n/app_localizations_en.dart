@@ -99,4 +99,31 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get ar => 'AR';
+
+  @override
+  String get all => 'All';
+
+  @override
+  String get sport => 'Sport';
+
+  @override
+  String get gaming => 'Gaming';
+
+  @override
+  String get workshop => 'Workshop';
+
+  @override
+  String get birthday => 'Birthday';
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get map => 'Map';
+
+  @override
+  String get love => 'Love';
+
+  @override
+  String get profile => 'Profile';
 }

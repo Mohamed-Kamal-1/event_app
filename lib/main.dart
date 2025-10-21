@@ -1,9 +1,8 @@
 import 'package:evently_app/SharedPreferences/app_shared_preferences.dart';
 import 'package:evently_app/providers/app_auth_provider.dart';
-import 'package:evently_app/providers/app_auth_signIn_provider.dart';
 import 'package:evently_app/providers/app_language_provider.dart';
 import 'package:evently_app/providers/app_theme_provider.dart';
-import 'package:evently_app/ui/create_event_screen.dart';
+import 'package:evently_app/ui/event/create_event_screen.dart';
 import 'package:evently_app/ui/home_screen/home_screen.dart';
 import 'package:evently_app/ui/login/login_screen.dart';
 import 'package:evently_app/ui/onboarding/onboarding_screen.dart';
@@ -52,9 +51,10 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+      // initialRoute:AppRoutes.OnboardingScreen.name,
       initialRoute: (appAuthProvider.isLoggedInBefore())
-          ? AppRoutes.OnboardingScreen.name
-          : AppRoutes.LoginScreen.name,
+          ? AppRoutes.HomeScreen.name
+          : AppRoutes.OnboardingScreen.name,
       routes: {
         AppRoutes.OnboardingScreen.name: (context) => OnboardingScreen(),
         AppRoutes.RegistrScreen.name: (context) => RegistrScreen(),

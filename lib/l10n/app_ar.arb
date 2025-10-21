@@ -26,6 +26,12 @@
   "pleaseEnter": "من فضلك أدخل",
   "pleaseEnterValid": "من فضلك أدخل قيمة صحيحة لـ ",
   "passwordsDoesNotMatch": "كلمة المرور غير متطابقة",
-  "passwordMust6Char": "كلمة المرور يجب ألا تقل عن 6 أحرف"
+  "passwordMust6Char": "كلمة المرور يجب ألا تقل عن 6 أحرف",
 
+  "commentHomeScreen" : "commentHomeScreen",
+  "all": "الكل",
+  "sport": "رياضة",
+  "gaming": "ألعاب",
+  "workshop": "ورشة عمل",
+  "birthday": "عيد ميلاد"
 }
