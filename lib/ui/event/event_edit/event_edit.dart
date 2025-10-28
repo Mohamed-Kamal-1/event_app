@@ -18,7 +18,6 @@ class _EventEditState extends State<EventEdit> {
   int selectedTabIndex = 0;
   List<Category> allCategories = Category.getCategories(includeAll: false);
 
-  // List<Category> allCategories = Category.getCategories(includeAll: false);
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   var formKey = GlobalKey<FormState>();
