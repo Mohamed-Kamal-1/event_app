@@ -16,7 +16,7 @@ import '../../database/model/user_dao.dart';
 import '../../l10n/app_localizations.dart';
 import '../../providers/app_auth_provider.dart';
 import '../../providers/app_auth_signIn_provider.dart';
-import  'app_form/app_form_login_screen.dart';
+import 'app_form/app_form_login_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -25,14 +25,14 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final auth = AuthSignIn();
+
   @override
   Widget build(BuildContext context) {
-
+    AppAuthProvider appAuthProvider = Provider.of<AppAuthProvider>(context);
     TextTheme textTheme = Theme.of(context).textTheme;
     AppLocalizations? appLocale = AppLocalizations.of(context);
 
     return Scaffold(
-
       appBar: AppBar(
         foregroundColor: AppColor.bluePrimaryColor,
         title: Text(
@@ -67,11 +67,14 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(appLocale.doNotHaveAccount,style: textTheme.titleSmall,),
-                  SizedBox(width: 10,),
+                  Text(appLocale.doNotHaveAccount, style: textTheme.titleSmall),
+                  SizedBox(width: 10),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, AppRoutes.RegistrScreen.name);
+                      Navigator.pushNamed(
+                        context,
+                        AppRoutes.RegistrScreen.name,
+                      );
                     },
                     child: Text(
                       appLocale.createAccount,
@@ -83,37 +86,37 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 34,),
+              SizedBox(height: 34),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(color: AppColor.offWhite,
-                  margin: EdgeInsets.symmetric(
-                      horizontal: 15
+                  Container(
+                    color: AppColor.offWhite,
+                    height: 1.5,
+                    width: 129,
                   ),
-                  height: 1.5,
-                  width: 129,
-                  ),
-                  Text(appLocale.or,style: textTheme.titleSmall?.copyWith(
-                    fontSize: 21,
-                    color: AppColor.bluePrimaryColor
-                  )),
-                  Container(color: AppColor.offWhite,
-                    margin: EdgeInsets.symmetric(
-                        horizontal: 15
+                  Text(
+                    appLocale.or,
+                    style: textTheme.titleSmall?.copyWith(
+                      fontSize: 21,
+                      color: AppColor.bluePrimaryColor,
                     ),
-                  height: 1.5,
-                  width: 129,
                   ),
-
+                  Container(
+                    color: AppColor.offWhite,
+                    height: 1.5,
+                    width: 129,
+                  ),
                 ],
               ),
-              SizedBox(height: 24,),
+              SizedBox(height: 24),
               InkWell(
                 onTap: () async {
-
-               await  auth.signinwithGoogle();
-               Navigator.pushReplacementNamed(context, AppRoutes.HomeScreen.name);
+                  await appAuthProvider.signinwithGoogle();
+                  Navigator.pushReplacementNamed(
+                    context,
+                    AppRoutes.HomeScreen.name,
+                  );
                 },
                 child: Container(
                   height: 57.67,
@@ -121,26 +124,30 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: Colors.transparent,
                     border: Border.all(
                       width: 1.5,
-                      color: AppColor.bluePrimaryColor
+                      color: AppColor.bluePrimaryColor,
                     ),
-                    borderRadius: BorderRadius.circular(16)
+                    borderRadius: BorderRadius.circular(16),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SvgPicture.asset(AppIcon.ic_google),
-                      SizedBox(width: 15,),
-                      Text('Login With Google',style: textTheme.titleMedium?.copyWith(
-                        color: AppColor.bluePrimaryColor
-                      ),),
+                      SizedBox(width: 15),
+                      Text(
+                        'Login With Google',
+                        style: textTheme.titleMedium?.copyWith(
+                          color: AppColor.bluePrimaryColor,
+                        ),
+                      ),
                     ],
                   ),
                 ),
               ),
-              SizedBox(height: 20,),
+              SizedBox(height: 20),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.26,
-                  child: AppSwitchLanguage()),
+                child: SafeArea(child: AppSwitchLanguage()),
+              ),
             ],
           ),
         ),

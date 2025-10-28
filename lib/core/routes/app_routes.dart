@@ -5,5 +5,9 @@ enum AppRoutes {
   LoginScreen,
   HomeScreen,
   CreateEventScreen,
+  MapTab,
+  CompleteOnboardingScreen,
+  EventDetails,
+  EventEdit,
   ;
 }

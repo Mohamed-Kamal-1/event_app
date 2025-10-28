@@ -10,6 +10,7 @@ import 'package:evently_app/ui/home_screen/tabs/favourite_tab/favourite_tab.dart
 import 'package:evently_app/ui/home_screen/tabs/home_tab/home_tab.dart';
 import 'package:evently_app/ui/home_screen/tabs/map_tab/map_tab.dart';
 import 'package:evently_app/ui/home_screen/tabs/profile_tab/profile_tab.dart';
+import 'package:evently_app/ui/tabs/events_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:provider/provider.dart';
@@ -28,22 +29,25 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int currentsSelectIndexBottom = 0;
   int currentsSelectIndexTabItem = 0;
+  List<Category> categories = Category.getCategories(includeAll: true);
   List<Widget> tabs = [HomeTab(), MapTab(), FavouriteTab(), ProfileTab()];
 
   @override
   Widget build(BuildContext context) {
+
     AppLanguageProvider appLanguageProvider = Provider.of<AppLanguageProvider>(
       context,
     );
     AppAuthProvider appAuthProvider = Provider.of<AppAuthProvider>(context);
     AppThemeProvider appThemeProvider = Provider.of<AppThemeProvider>(context);
     AppUser? user = appAuthProvider.getUser();
-    List<Category> categories = Category.getCategories();
 
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 130,
-        backgroundColor: AppColor.bluePrimaryColor,
+      appBar:
+      (currentsSelectIndexBottom == 0)
+      ? AppBar(
+        toolbarHeight: 140,
+        backgroundColor: context.appBarTheme.backgroundColor,
 
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,119 +115,44 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          IconButton(
-            onPressed: () {
-              appAuthProvider.logout();
-              Navigator.pushReplacementNamed(
-                context,
-                AppRoutes.LoginScreen.name,
-              );
-            },
-            icon: Icon(
-              Icons.logout_outlined,
-              color: AppColor.whitePrimaryColor,
-            ),
-          ),
         ],
-        // bottom: TabBar(
-        //   onTap: (index) {
-        //
-        //   },
-        //   padding: EdgeInsets.only(bottom: 16),
-        //   tabAlignment: TabAlignment.start,
-        //   isScrollable: true,
-        //   indicatorColor: Colors.transparent,
-        //   dividerColor: Colors.transparent,
-        //   tabs: [
-        //     TabbarItem(title: context.appLocal., icon: icon, index: index, currentIndex: currentIndex)
-        //     TabbarItem(title: title, icon: icon, index: index, currentIndex: currentIndex)
-        //     TabbarItem(title: title, icon: icon, index: index, currentIndex: currentIndex)
-        //     TabbarItem(title: title, icon: icon, index: index, currentIndex: currentIndex)
-        //     TabbarItem(title: title, icon: icon, index: index, currentIndex: currentIndex)
-        //   ]
-        // ),
-      ),
+      )
+      :null,
       bottomNavigationBar: AppBottomNavigation((index) {
         currentsSelectIndexBottom = index;
-        setState(() {
-
-        });
-      },),
+        setState(() {});
+      }),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: AppFloatingActionButton(),
       body: Column(
         children: [
-          DefaultTabController(
-            length: 5,
-            child: Container(
-              decoration: BoxDecoration(
-                color: AppColor.bluePrimaryColor,
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadiusGeometry.only(
-                  bottomLeft: Radius.circular(24),
-                  bottomRight: Radius.circular(24),
-                ),
-              ),
-              child: TabBar(
-                labelPadding: EdgeInsets.symmetric(horizontal: 10),
-
-                onTap: (index) {
-                  currentsSelectIndexTabItem = index;
-                  setState(() {
-
-                  });
-                },
-                padding: EdgeInsets.only(bottom: 16),
-                tabAlignment: TabAlignment.start,
-                isScrollable: true,
-                indicatorColor: Colors.transparent,
-                dividerColor: Colors.transparent,
-                tabs: [
-                  TabbarItem(
-                    title: 'all',
-                    icon: FontAwesome.compass,
-                    index: 0,
-                    currentIndex: currentsSelectIndexTabItem,
-                  ),
-                  TabbarItem(
-                    title: 'Sports',
-                    icon: FontAwesome.playstation_brand,
-                    index: 1,
-                    currentIndex: currentsSelectIndexTabItem,
-                  ),
-                  TabbarItem(
-                    title: 'Birthdays',
-                    icon: FontAwesome.compass,
-                    index: 2,
-                    currentIndex: currentsSelectIndexTabItem,
-                  ),
-                  TabbarItem(
-                    title: 'all',
-                    icon: FontAwesome.compass,
-                    index: 3,
-                    currentIndex: currentsSelectIndexTabItem,
-                  ),
-                  TabbarItem(
-                    title: 'all',
-                    icon: FontAwesome.compass,
-                    index: 4,
-                    currentIndex: currentsSelectIndexTabItem,
-                  ),
-                ],
+          Container(
+            decoration: BoxDecoration(
+              color: AppColor.bluePrimaryColor,
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadiusGeometry.only(
+                bottomLeft: Radius.circular(24),
+                bottomRight: Radius.circular(24),
               ),
             ),
+            // put function
+            // child: EventsTab(
+            //   categories: categories,
+            //   currentTabIndex: currentsSelectIndexTabItem,
+            //
+            //   onTabSelected: (index, category) {
+            //     setState(() {
+            //       currentsSelectIndexTabItem = index;
+            //     });
+            //   },
+            // ),
+
+            // child: Eve,
           ),
+
           Expanded(child: tabs[currentsSelectIndexBottom]),
         ],
       ),
     );
   }
-
-  // void SelectIndex(int index) {
-  //   setState(() {
-  //   currentsSelectIndexBottom = index;
-  //   print('currentsSelectIndexBottom : $currentsSelectIndexTabItem');
-  //   print('index : $index');
-  //   });
-  // }
 }

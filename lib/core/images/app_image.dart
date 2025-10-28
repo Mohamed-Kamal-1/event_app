@@ -8,5 +8,7 @@ class AppImage {
   static const String gaming = '${_basePath}Gaming.png';
   static const String reading = '${_basePath}Reading.png';
   static const String birthday = '${_basePath}Birthday.png';
+  static const String workshop = '${_basePath}Workshop.png';
+  static const String profile = '${_basePath}Rout.png';
 
 }

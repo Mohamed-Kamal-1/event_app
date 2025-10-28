@@ -7,8 +7,7 @@ class TabbarItem extends StatefulWidget {
   final IconData icon;
   final int index;
   final int currentIndex;
-
-  const TabbarItem({
+   TabbarItem({
     required this.title,
     required this.icon,
     required this.index,
@@ -26,10 +25,8 @@ class _TabbarItemState extends State<TabbarItem> {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: widget.currentIndex == widget.index
-            ? Colors.white
-            : Colors.transparent,
-        border: Border.all(width: 1, color: Colors.white),
+        color:  (widget.currentIndex == widget.index) ? Colors.white :  Colors.transparent, //inside:,
+        border: Border.all(width: 1, color: Colors.white), // border
         borderRadius: BorderRadius.circular(46),
       ),
       child: Row(
@@ -37,7 +34,7 @@ class _TabbarItemState extends State<TabbarItem> {
           Icon(
             widget.icon,
             color: widget.currentIndex == widget.index
-                ? AppColor.bluePrimaryColor
+                ? AppColor.bluePrimaryColor //inside icon when select
                 : Colors.white,
           ),
           const SizedBox(width: 10),
@@ -45,7 +42,7 @@ class _TabbarItemState extends State<TabbarItem> {
             widget.title,
             style: textTheme.titleSmall?.copyWith(
               color: widget.currentIndex == widget.index
-                  ? AppColor.bluePrimaryColor
+                  ? AppColor.bluePrimaryColor // inside text when select
                   : Colors.white,
             ),
           ),

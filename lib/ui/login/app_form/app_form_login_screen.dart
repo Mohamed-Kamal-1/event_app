@@ -45,6 +45,7 @@ class _AppFormLoginScreenState extends State<AppFormLoginScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           AppFormField(
+            lines: 1,
             labelText: appLocale!.email,
             icon: Icons.mail,
             keyboardType: TextInputType.emailAddress,
@@ -55,6 +56,7 @@ class _AppFormLoginScreenState extends State<AppFormLoginScreen> {
           ),
 
           AppFormField(
+            lines: 1,
             labelText: appLocale.password,
             icon: Icons.lock,
             isPassword: true,
@@ -108,14 +110,11 @@ class _AppFormLoginScreenState extends State<AppFormLoginScreen> {
     );
 
     if (response.success == true && response.cred?.user?.uid != null) {
-     await appAuthProvider.loadUserAfterLogin(response.cred!.user!.uid);
+      await appAuthProvider.loadUserAfterLogin(response.cred!.user!.uid);
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text('every thing is ok')));
-      Navigator.pushReplacementNamed(
-        context,
-        AppRoutes.HomeScreen.name,
-      );
+      Navigator.pushReplacementNamed(context, AppRoutes.HomeScreen.name);
     } else {
       handelError(response);
     }

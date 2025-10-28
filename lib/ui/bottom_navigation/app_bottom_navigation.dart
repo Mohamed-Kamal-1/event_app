@@ -22,6 +22,7 @@ class _AppBottomNavigationState extends State<AppBottomNavigation> {
     return Theme(
       data: ThemeData(useMaterial3: false),
       child: BottomAppBar(
+
         shape: const CircularNotchedRectangle(),
         color: AppColor.bluePrimaryColor,
         notchMargin: 6,
@@ -34,8 +35,9 @@ class _AppBottomNavigationState extends State<AppBottomNavigation> {
             });
           },
           currentIndex: selectIndex,
+
           elevation: 0,
-          backgroundColor: AppColor.bluePrimaryColor,
+          backgroundColor: context.bottomNavBarTheme.backgroundColor,
           selectedItemColor: Colors.white,
           unselectedItemColor: AppColor.whitePrimaryColor,
           type: BottomNavigationBarType.fixed,

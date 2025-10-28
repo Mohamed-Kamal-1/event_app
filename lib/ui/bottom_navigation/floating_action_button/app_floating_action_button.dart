@@ -1,3 +1,4 @@
+import 'package:evently_app/core/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/colors/app_color.dart';
@@ -15,7 +16,9 @@ class _AppFloatingActionButtonState extends State<AppFloatingActionButton> {
     return FloatingActionButton(
     elevation: 0,
 
-    onPressed: () {},
+    onPressed: () {
+      Navigator.pushNamed(context, AppRoutes.CreateEventScreen.name);
+    },
     child: Icon(Icons.add, size: 35),
     backgroundColor: AppColor.bluePrimaryColor,
     foregroundColor: AppColor.whitePrimaryColor,

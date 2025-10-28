@@ -1,10 +1,15 @@
 import 'package:evently_app/SharedPreferences/app_shared_preferences.dart';
+import 'package:evently_app/SharedPreferences/onboarding_shared_preferences.dart';
 import 'package:evently_app/providers/app_auth_provider.dart';
 import 'package:evently_app/providers/app_language_provider.dart';
 import 'package:evently_app/providers/app_theme_provider.dart';
-import 'package:evently_app/ui/event/create_event_screen.dart';
+import 'package:evently_app/ui/event/create_event/create_event_screen.dart';
+import 'package:evently_app/ui/event/event_details/event_details.dart';
+import 'package:evently_app/ui/event/event_edit/event_edit.dart';
 import 'package:evently_app/ui/home_screen/home_screen.dart';
+import 'package:evently_app/ui/home_screen/tabs/map_tab/map_tab.dart';
 import 'package:evently_app/ui/login/login_screen.dart';
+import 'package:evently_app/ui/onboarding/complete_onboarding_screen.dart';
 import 'package:evently_app/ui/onboarding/onboarding_screen.dart';
 import 'package:evently_app/ui/register/registr_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -18,6 +23,7 @@ import 'l10n/app_localizations.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppSharedPreferences.init();
+  await OnboardingSharedPreferences.init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   runApp(
@@ -51,9 +57,12 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+
       // initialRoute:AppRoutes.OnboardingScreen.name,
       initialRoute: (appAuthProvider.isLoggedInBefore())
           ? AppRoutes.HomeScreen.name
+          : (OnboardingSharedPreferences.isSaved())
+          ? AppRoutes.LoginScreen.name
           : AppRoutes.OnboardingScreen.name,
       routes: {
         AppRoutes.OnboardingScreen.name: (context) => OnboardingScreen(),
@@ -61,6 +70,11 @@ class MainApp extends StatelessWidget {
         AppRoutes.LoginScreen.name: (context) => LoginScreen(),
         AppRoutes.HomeScreen.name: (context) => HomeScreen(),
         AppRoutes.CreateEventScreen.name: (context) => CreateEventScreen(),
+        AppRoutes.MapTab.name: (context) => MapTab(),
+        AppRoutes.CompleteOnboardingScreen.name: (context) => CompleteOnboardingScreen(),
+        AppRoutes.EventDetails.name: (context) => EventDetails(),
+        AppRoutes.EventEdit.name: (context) => EventEdit(),
+
       },
     );
   }

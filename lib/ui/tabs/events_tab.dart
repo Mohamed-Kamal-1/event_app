@@ -1,31 +1,80 @@
 import 'package:evently_app/extensions/extension_home_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/colors/app_color.dart';
 import '../../database/model/category.dart';
 import '../../l10n/app_localizations.dart';
 import '../app_bar/tab_bar/tabBar_item.dart';
-typedef OnTabSelected = Function(int index);
+
+typedef OnTabSelected = Function(int index, Category category);
+
 class EventsTab extends StatelessWidget {
-  OnTabSelected onTabSelected;
+  List<Category> categories;
   int currentTabIndex;
-  EventsTab({required this.onTabSelected,required this.currentTabIndex});
-  List<Category> categories = Category.getCategories();
+  OnTabSelected onTabSelected;
+  bool reverse;
+  EventsTab(this.categories, this.currentTabIndex, this.onTabSelected,
+      {this.reverse = false});
+
+
 
   @override
   Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: categories.length,
+      child: TabBar(
+        labelPadding:EdgeInsets.symmetric(
+          horizontal: 10
+        ) ,
+        padding: EdgeInsets.only(bottom: 16),
+        tabAlignment: TabAlignment.start,
+        isScrollable: true,
 
-    return TabBar(
-      onTap: (index) {
-        onTabSelected(index);
-      },
-      tabs: categories.map((category) {
-        return TabbarItem(
-          title:context.appLocal.translate(category.title).toString(),
-          icon: category.iconData,
-          index: category.id,
-          currentIndex:currentTabIndex ,
-        );
-      }).toList(),
+        indicatorColor: Colors.transparent,
+        dividerColor: Colors.transparent,
+        onTap: (index) {
+          onTabSelected(index, categories[index]);
+        },
+        tabs: categories.map((category) {
+          return TabbarItem(
+            title: translateTitle(category.title, context),
+            icon: category.iconData,
+            currentIndex: currentTabIndex,
+            index: categories.indexOf(category),
+          );
+        }).toList(),
+      ),
     );
+  }
+
+  String translateTitle(String title, BuildContext context) {
+    switch (title) {
+      case 'All':
+        {
+          return context.appLocal.all;
+
+        }
+      case 'sport':
+        {
+          return context.appLocal.sport;
+
+        }
+      case 'Gaming':
+        {
+          return context.appLocal.gaming;
+
+        }
+      case 'Workshop':
+        {
+          return context.appLocal.workshop;
+
+        }
+      case 'Birthday':
+        {
+          return context.appLocal.birthday;
+
+        }
+    }
+    return 'non';
   }
 }

@@ -4,6 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import '../database/model/event.dart';
+
 class AppAuthProvider extends ChangeNotifier {
   late FirebaseAuth _authService = FirebaseAuth.instance;
   User? _fbAuthUser = FirebaseAuth.instance.currentUser;
@@ -29,9 +31,14 @@ class AppAuthProvider extends ChangeNotifier {
     _databaseUser = await UserDao.getUserById(userId);
     notifyListeners();
   }
-
+  bool isFavorite(Event event){
+    return _databaseUser?.favorites.contains(event.id)?? false;
+  }
   AppUser? getUser() {
     return _databaseUser;
+  }
+  void updateFavorites(List<String> favorites){
+    _databaseUser?.favorites = favorites;
   }
 
   bool isLoggedInBefore() {
@@ -43,6 +50,7 @@ class AppAuthProvider extends ChangeNotifier {
 
     return true;
   }
+
 
   void logout() {
     _authService.signOut();
@@ -108,18 +116,81 @@ class AppAuthProvider extends ChangeNotifier {
     return AuthResponse(success: false, failure: AuthFailure.general);
   }
 
+  static final _google = GoogleSignIn.instance;
+  static bool isInitialize = false;
+
+  static Future<void> _initSignIn() async {
+    if (!isInitialize) {
+      _google.initialize(
+        serverClientId:
+            "406099696497-a12gakvts4epfk5pkio7dphc1anjiggc.apps.googleusercontent.com",
+      );
+    }
+    isInitialize = true;
+  }
+
+  Future<UserCredential?> signinwithGoogle() async {
+    try {
+      await _googleSignIn.initialize();
+      final account = await _googleSignIn.authenticate();
+      final auth = account.authentication;
+      final cred = GoogleAuthProvider.credential(idToken: auth.idToken);
+      UserCredential? userCredential = await _authService.signInWithCredential(
+        cred,
+      );
+      AppUser user = AppUser(
+        userId: userCredential.user?.uid,
+        email: userCredential.user?.email,
+        name: userCredential.user?.displayName,
+        phone: userCredential.user?.phoneNumber,
+      );
+      await UserDao.addUser(user);
+      loadUserAfterLogin(userCredential.user!.uid);
+      notifyListeners();
+      return userCredential;
+    } catch (e) {
+      return null;
+    }
+  }
+
   // Future<UserCredential?> signInWithGoogle() async {
-  //   try {
-  //     await _googleSignIn.initialize();
-  //     final account = await _googleSignIn.authenticate();
-  //     final auth = account.authentication;
-  //     final cred = GoogleAuthProvider.credential(idToken: auth.idToken);
-  //     final credential = _authService.signInWithCredential(cred);
+  //   _initSignIn();
   //
-  //     return await credential;
-  //   } catch (e) {
-  //     return null;
-  //   }
+  //   GoogleSignInAccount account = await _google.authenticate();
+  //   final String? idToken = account.authentication.idToken;
+  //   final GoogleSignInAuthorizationClient authClient =
+  //       account.authorizationClient;
+  //   final GoogleSignInClientAuthorization? auth = await authClient
+  //       .authorizationForScopes(['email', 'profile']);
+  //
+  //   String? accessToken = auth?.accessToken;
+  //   OAuthCredential credential = GoogleAuthProvider.credential(idToken: idToken,accessToken: accessToken);
+  //   UserCredential  userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+  //   return userCredential;
+  //   // AppUser user = AppUser(
+  //   //   userId: userCredential.user?.uid,
+  //   //   email: userCredential.user?.email,
+  //   //   name: userCredential.user?.displayName,
+  //   //   phone: userCredential.user?.phoneNumber,
+  //   // );
+  //   // await UserDao.addUser(user);
+  //
+  //   //
+  //   // AppUser? reciveUser = await UserDao.getUserById(userCredential.user?.uid);
+  //   // print('====================================================');
+  //   // print("User is $reciveUser");
+  //   // print('====================================================');
+  //
+  //   // try {
+  //   //   await _googleSignIn.initialize();
+  //   //   final account = await _googleSignIn.authenticate();
+  //   //   final auth = account.authentication;
+  //   //   final cred = GoogleAuthProvider.credential(idToken: auth.idToken);
+  //   //   final credential = _authService.signInWithCredential(cred);
+  //   //   return await credential;
+  //   // } catch (e) {
+  //   //   return null;
+  //   // }
   // }
 }
 

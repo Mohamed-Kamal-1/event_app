@@ -24,7 +24,25 @@ class UserDao{
    var doc = await _getUserCollection().doc(uid).get();
    return doc.data();
   }
+  static Future<AppUser> removeEventFromFavorites(AppUser user,
+      String? eventId)async {
+    user.favorites.remove(eventId);
+    await _getUserCollection()
+        .doc(user.userId)
+        .set(user);
+    return user;
 
+  }
+  static Future<AppUser> addEventToFavorites(AppUser user,
+      String? eventId)async {
+    if(eventId==null)return user;
+    user.favorites.add(eventId);
+    await _getUserCollection()
+        .doc(user.userId)
+        .set(user);
+    return user;
+
+  }
 
 
 }

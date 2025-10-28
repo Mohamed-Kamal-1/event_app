@@ -11,19 +11,20 @@ typedef Validator = String? Function(String? text);
 
 class AppFormField extends StatefulWidget {
   String labelText;
-  IconData icon;
+  IconData? icon;
   TextInputType keyboardType;
   bool isPassword;
   Validator? validator;
   TextEditingController? controller;
-
+  int? lines;
   AppFormField({
     required this.labelText,
-    required this.icon,
+     this.icon,
     this.keyboardType = TextInputType.text,
     this.isPassword = false,
     this.validator,
     this.controller,
+    this.lines,
   });
 
   @override
@@ -43,6 +44,7 @@ class _AppFormFieldState extends State<AppFormField> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: TextFormField(
+        maxLines: widget.lines,
         controller: widget.controller,
         // autovalidateMode: AutovalidateMode.onUserInteraction,
         obscureText: widget.isPassword ? isTextvisable : isTextvisable == false,

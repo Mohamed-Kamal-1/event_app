@@ -6,9 +6,9 @@ import '../colors/app_color.dart';
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
     // canvasColor: AppColor.gold,
-    appBarTheme: AppBarTheme(backgroundColor: Colors.brown),
+    appBarTheme: AppBarTheme(backgroundColor: AppColor.bluePrimaryColor),
     // scaffoldBackgroundColor: Colors.brown,
-    scaffoldBackgroundColor: Colors.brown,
+    scaffoldBackgroundColor: Colors.white,
     textTheme: TextTheme(
       titleMedium: GoogleFonts.inter(
         fontSize: 20,
@@ -70,9 +70,11 @@ class AppTheme {
       ),
     ),
 
-    // iconTheme: IconThemeData(
-    //   color: Colors.redAccent,
-    // ),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: AppColor.bluePrimaryColor,
+        selectedItemColor: AppColor.whitePrimaryColor,
+        unselectedItemColor: AppColor.offWhite,
+      )
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -97,18 +99,18 @@ class AppTheme {
       ),
 
       headlineMedium: GoogleFonts.inter(
-        color: AppColor.bluePrimaryColor,
+        color: AppColor.whitePrimaryColor,
         fontSize: 36,
         fontWeight: FontWeight.bold,
       ),
     ),
     inputDecorationTheme: InputDecorationThemeData(
       // filled:true ,
-      focusColor: AppColor.bluePrimaryColor,
+      focusColor: AppColor.darkBluePrimaryColor,
       // fillColor: AppColor.bluePrimaryColor,
       floatingLabelBehavior: FloatingLabelBehavior.auto,
       border: OutlineInputBorder(
-        borderSide: BorderSide(color: AppColor.bluePrimaryColor, width: 1.5),
+        borderSide: BorderSide(color: AppColor.darkBluePrimaryColor, width: 1.5),
         borderRadius: BorderRadius.circular(16),
       ),
       enabledBorder: OutlineInputBorder(
@@ -138,5 +140,10 @@ class AppTheme {
         ),
       ),
     ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: AppColor.darkBluePrimaryColor,
+      selectedItemColor: AppColor.whitePrimaryColor,
+      unselectedItemColor: AppColor.offWhite,
+    )
   );
 }
