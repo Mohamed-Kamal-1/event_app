@@ -1,4 +1,3 @@
-import 'package:evently_app/SharedPreferences/onboarding_shared_preferences.dart';
 import 'package:evently_app/ui/onboarding/display_screen.dart';
 import 'package:evently_app/ui/onboarding/onboarding_data.dart';
 import 'package:flutter/cupertino.dart';

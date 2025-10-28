@@ -1,10 +1,6 @@
 import 'package:evently_app/core/colors/app_color.dart';
 import 'package:evently_app/core/routes/app_routes.dart';
-import 'package:evently_app/database/model/app_user.dart';
-import 'package:evently_app/database/model/user_dao.dart';
 import 'package:evently_app/providers/app_auth_provider.dart';
-import 'package:evently_app/ui/home_screen/home_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -38,7 +34,6 @@ class _AppFormLoginScreenState extends State<AppFormLoginScreen> {
   @override
   Widget build(BuildContext context) {
     AppLocalizations? appLocale = AppLocalizations.of(context);
-    AppAuthProvider appAuthProvider = Provider.of<AppAuthProvider>(context);
     return Form(
       key: _formKey,
       child: Column(

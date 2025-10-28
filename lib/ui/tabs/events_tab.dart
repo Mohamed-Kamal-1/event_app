@@ -1,9 +1,7 @@
 import 'package:evently_app/extensions/extension_home_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/colors/app_color.dart';
 import '../../database/model/category.dart';
-import '../../l10n/app_localizations.dart';
 import '../app_bar/tab_bar/tabBar_item.dart';
 
 typedef OnTabSelected = Function(int index, Category category);

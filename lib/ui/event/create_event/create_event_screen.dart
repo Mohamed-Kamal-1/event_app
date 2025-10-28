@@ -2,7 +2,6 @@ import 'package:evently_app/core/colors/app_color.dart';
 import 'package:evently_app/extensions/date_time_extensions.dart';
 import 'package:evently_app/extensions/extension_home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:icons_plus/icons_plus.dart';
 import 'package:provider/provider.dart';
 
 import '../../../database/model/EventsDao.dart';

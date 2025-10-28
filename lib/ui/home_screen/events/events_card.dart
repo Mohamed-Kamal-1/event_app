@@ -1,4 +1,3 @@
-import 'package:evently_app/database/model/category.dart';
 import 'package:evently_app/database/model/event.dart';
 import 'package:evently_app/database/model/user_dao.dart';
 import 'package:evently_app/extensions/extension_home_screen.dart';
@@ -7,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/colors/app_color.dart';
-import '../../../core/images/app_image.dart';
 import '../../../providers/app_theme_provider.dart';
 
 class EventsCard extends StatefulWidget {

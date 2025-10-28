@@ -1,6 +1,5 @@
   import 'package:evently_app/SharedPreferences/onboarding_shared_preferences.dart';
 import 'package:evently_app/core/colors/app_color.dart';
-  import 'package:evently_app/core/images/app_image.dart';
   import 'package:evently_app/core/routes/app_routes.dart';
   import 'package:evently_app/logic/switch_language_and_theme/switch_theme.dart';
   import 'package:evently_app/providers/app_theme_provider.dart';
@@ -11,7 +10,6 @@ import 'package:evently_app/core/colors/app_color.dart';
   import '../../l10n/app_localizations.dart';
   import '../../logic/switch_language_and_theme/switch_language.dart';
   import '../app_bar/event_appbar_Screen.dart';
-  import 'complete_onboarding_screen.dart';
 
   class OnboardingScreen extends StatefulWidget {
     @override

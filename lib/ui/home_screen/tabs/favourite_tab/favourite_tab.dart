@@ -1,7 +1,6 @@
 
 import 'package:evently_app/core/colors/app_color.dart';
 import 'package:evently_app/ui/home_screen/events/events_card.dart';
-import 'package:evently_app/ui/register/app_form/app_form.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -88,10 +87,10 @@ class _FavouriteTabState extends State<FavouriteTab> {
                 return  Padding(
                   padding: EdgeInsets.all(16.0),
                   child: ListView.separated(
-                      itemCount: events?.length ?? 0,
+                      itemCount: events.length,
                       separatorBuilder: (context, index) => SizedBox(height: 16),
                       itemBuilder: (context, index) {
-                        var event  = events![index];
+                        var event  = events[index];
                         var isFavorite = provider.isFavorite(event);
                         event.isFavorite = isFavorite;
                         return EventsCard(

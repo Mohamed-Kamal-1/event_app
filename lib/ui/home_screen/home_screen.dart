@@ -12,10 +12,8 @@ import 'package:evently_app/ui/home_screen/tabs/map_tab/map_tab.dart';
 import 'package:evently_app/ui/home_screen/tabs/profile_tab/profile_tab.dart';
 import 'package:evently_app/ui/tabs/events_tab.dart';
 import 'package:flutter/material.dart';
-import 'package:icons_plus/icons_plus.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/routes/app_routes.dart';
 import '../../database/model/app_user.dart';
 import '../../database/model/category.dart';
 

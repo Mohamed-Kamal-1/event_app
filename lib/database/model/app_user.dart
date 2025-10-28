@@ -20,10 +20,10 @@ class AppUser {
       name: map?['name'],
       phone: map?['phone'],
       favorites: (map?['favorites'] as List<dynamic>)
-          .map((e) => e.toString(),).toList() ?? []
+          .map((e) => e.toString(),).toList()
   );
 
   Map<String, dynamic> toMap() {
-    return {'id': userId, 'email': email, 'name': name, 'phone': phone, 'favorites': favorites ?? []};
+    return {'id': userId, 'email': email, 'name': name, 'phone': phone, 'favorites': favorites};
   }
 }

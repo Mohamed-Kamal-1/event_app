@@ -1,5 +1,4 @@
 import 'package:evently_app/core/intro_screen/onBoarding_image.dart';
-import 'package:flutter/material.dart';
 
 class OnboardingData {
   String image;

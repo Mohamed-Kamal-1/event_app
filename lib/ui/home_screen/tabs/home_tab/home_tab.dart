@@ -1,9 +1,6 @@
 import 'package:evently_app/core/colors/app_color.dart';
-import 'package:evently_app/core/images/app_image.dart';
 import 'package:evently_app/database/model/EventsDao.dart';
 import 'package:evently_app/database/model/category.dart';
-import 'package:evently_app/database/model/user_dao.dart';
-import 'package:evently_app/extensions/extension_home_screen.dart';
 import 'package:evently_app/providers/app_auth_provider.dart';
 import 'package:evently_app/providers/app_theme_provider.dart';
 import 'package:evently_app/ui/home_screen/events/events_card.dart';
@@ -92,7 +89,7 @@ class _HomeTabState extends State<HomeTab> {
                   );
                 },
                 separatorBuilder: (context, index) => SizedBox(height: 16),
-                itemCount: events.length ?? 0,
+                itemCount: events.length,
               );
             },
           ),

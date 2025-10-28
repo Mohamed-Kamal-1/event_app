@@ -1,18 +1,14 @@
 import 'package:evently_app/core/icons/app_icon.dart';
 import 'package:evently_app/logic/switch_language_and_theme/switch_language.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/colors/app_color.dart';
 import '../../core/images/app_image.dart';
 import '../../core/routes/app_routes.dart';
-import '../../database/model/app_user.dart';
-import '../../database/model/user_dao.dart';
 import '../../l10n/app_localizations.dart';
 import '../../providers/app_auth_provider.dart';
 import '../../providers/app_auth_signIn_provider.dart';
