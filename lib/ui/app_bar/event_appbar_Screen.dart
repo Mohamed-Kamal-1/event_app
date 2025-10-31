@@ -1,3 +1,5 @@
+import 'package:evently_app/core/colors/app_color.dart';
+import 'package:evently_app/extensions/extension_home_screen.dart';
 import 'package:flutter/material.dart';
 import '../../core/images/app_image.dart';
 import '../../l10n/app_localizations.dart';
@@ -14,9 +16,11 @@ class EventAppBarScreen extends StatelessWidget implements PreferredSizeWidget {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(AppImage.primaryLogo),
+          Image.asset(AppImage.primaryLogo,width: 50,),
           SizedBox(width: 10),
-          Text(appLocale!.evently, style: textTheme.headlineMedium),
+          Text(appLocale!.evently, style: textTheme.headlineMedium?.copyWith(
+            color: AppColor.bluePrimaryColor
+          )),
         ],
       ),
     );

@@ -79,9 +79,30 @@ class EventsDao {
     );
   }
 
-  static Future<void> updateEvent(Event event)async{
+  static Future<void> updateEvent(Event event) async {
     var docRef = _getEventsCollection().doc(event.id);
-    await docRef.update(event.toMap());
 
+    try {
+      await docRef.update(event.toMap());
+    } on FirebaseException catch (e) {
+      if (e.code == 'not-found') {
+        await docRef.set(event, SetOptions(merge: true));
+      } else {
+        rethrow;
+      }
+    }
+  }
+  static Future<void> deleteEvent(Event event) async {
+    var docRef = _getEventsCollection().doc(event.id);
+
+    try {
+      await docRef.delete();
+    } on FirebaseException catch (e) {
+      if (e.code == 'not-found') {
+        await docRef.set(event, SetOptions(merge: true));
+      } else {
+        rethrow;
+      }
+    }
   }
 }

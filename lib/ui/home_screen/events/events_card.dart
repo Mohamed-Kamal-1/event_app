@@ -1,5 +1,6 @@
 import 'package:evently_app/database/model/event.dart';
 import 'package:evently_app/database/model/user_dao.dart';
+import 'package:evently_app/extensions/date_time_extensions.dart';
 import 'package:evently_app/extensions/extension_home_screen.dart';
 import 'package:evently_app/providers/app_auth_provider.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +30,7 @@ class _EventsCardState extends State<EventsCard> {
 
     return Container(
       height: 203.06,
+      margin: EdgeInsets.symmetric(horizontal: 16),
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
@@ -42,10 +44,11 @@ class _EventsCardState extends State<EventsCard> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: 50,
-            alignment: Alignment.centerLeft,
+
+            width: 55,
+            alignment: Alignment.center,
             margin: EdgeInsets.all(8),
-            padding: EdgeInsets.all(8),
+            padding: EdgeInsets.symmetric(vertical: 2),
             decoration: BoxDecoration(
               color: (isThemeDark)
                   ? AppColor.darkBluePrimaryColor
@@ -53,7 +56,6 @@ class _EventsCardState extends State<EventsCard> {
               borderRadius: BorderRadius.circular(8),
             ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   '${widget.event.date?.day}',
@@ -62,7 +64,7 @@ class _EventsCardState extends State<EventsCard> {
                   ),
                 ),
                 Text(
-                  '${widget.event.date?.month}',
+                  '${widget.event.date?.formatMonth()}',
                   style: context.fonts.titleSmall?.copyWith(
                     color: AppColor.bluePrimaryColor,
                   ),
@@ -84,7 +86,7 @@ class _EventsCardState extends State<EventsCard> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('${widget.event.desc}', style: context.fonts.titleSmall),
+                Text(textAlign: TextAlign.center ,'${widget.event.desc}', style: context.fonts.titleSmall),
                 GestureDetector(
                   onTap: () {
                     toggleFavorite(widget.event);

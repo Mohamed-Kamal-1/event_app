@@ -11,12 +11,7 @@ import 'package:evently_app/core/colors/app_color.dart';
   import '../../logic/switch_language_and_theme/switch_language.dart';
   import '../app_bar/event_appbar_Screen.dart';
 
-  class OnboardingScreen extends StatefulWidget {
-    @override
-    State<OnboardingScreen> createState() => _OnboardingScreenState();
-  }
-
-  class _OnboardingScreenState extends State<OnboardingScreen> {
+  class OnboardingScreen extends StatelessWidget {
     bool isDarkTheme = false;
 
     @override
@@ -28,27 +23,31 @@ import 'package:evently_app/core/colors/app_color.dart';
       return Scaffold(
         appBar: EventAppBarScreen(),
         body: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Image.asset(
-                (appThemeProvider.getSelectedThemMode() == ThemeMode.dark)
-                    ? OnBoardingDarkThemeImage.darkMidOnboarding
-                    : OnBoardingLightThemeImage.midOnboarding,
-                width: double.infinity,
-                height: MediaQuery.of(context).size.height * 0.429,
+              Flexible(
+                child: Image.asset(
+                  (appThemeProvider.getSelectedThemMode() == ThemeMode.dark)
+                      ? OnBoardingDarkThemeImage.darkMidOnboarding
+                      : OnBoardingLightThemeImage.midOnboarding,
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height * 0.429,
+                ),
               ),
 
-              Expanded(
+              Flexible(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text(
-                      appLocale!.personalizeYourExperience,
-                      style: textTheme.titleMedium?.copyWith(
-                        color: AppColor.bluePrimaryColor,
+                    Flexible(
+                      child: Text(
+                        appLocale!.personalizeYourExperience,
+                        style: textTheme.titleMedium?.copyWith(
+                          color: AppColor.bluePrimaryColor,
+                        ),
                       ),
                     ),
                     Text(
@@ -100,13 +99,14 @@ import 'package:evently_app/core/colors/app_color.dart';
                           if (appThemeProvider.getSelectedThemMode() == ThemeMode.dark) {
                             isLightTheme = false;
                           }
-                          if(OnboardingSharedPreferences.isSaved()){
-                               Navigator.pushReplacementNamed(context, AppRoutes.LoginScreen.name,arguments: isLightTheme);
-
-                          }else{
-                            await OnboardingSharedPreferences.saveBoolen(true);
-                            Navigator.pushReplacementNamed(context, AppRoutes.CompleteOnboardingScreen.name,arguments: isLightTheme);
-                          }
+                          Navigator.pushNamed(context, AppRoutes.CompleteOnboardingScreen.name,arguments: isLightTheme);
+                          // if(OnboardingSharedPreferences.isSaved()){
+                          //      Navigator.pushReplacementNamed(context, AppRoutes.LoginScreen.name,arguments: isLightTheme);
+                          //
+                          // }else{
+                          //   await OnboardingSharedPreferences.saveBoolen(true);
+                          //   Navigator.pushReplacementNamed(context, AppRoutes.CompleteOnboardingScreen.name,arguments: isLightTheme);
+                          // }
                         },
                         child: Text(
                           appLocale.letsStart,

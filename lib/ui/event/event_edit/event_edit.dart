@@ -1,4 +1,5 @@
 import 'package:evently_app/core/colors/app_color.dart';
+import 'package:evently_app/core/routes/app_routes.dart';
 import 'package:evently_app/extensions/date_time_extensions.dart';
 import 'package:evently_app/extensions/extension_home_screen.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,6 @@ import '../../tabs/events_tab.dart';
 class EventEdit extends StatefulWidget {
   @override
   State<EventEdit> createState() => _EventEditState();
-
 }
 
 class _EventEditState extends State<EventEdit> {
@@ -33,10 +33,10 @@ class _EventEditState extends State<EventEdit> {
   @override
   Widget build(BuildContext context) {
     final event = ModalRoute.of(context)!.settings.arguments as Event;
-     eventId = event.id;
+    eventId = event.id;
     titleController.text = event.title!;
     descriptionController.text = event.desc!;
-
+    final eventTime = TimeOfDay.fromDateTime(event.time!).format(context);
     // selectedTabIndex = allCategories.indexOf(category);
 
     return Scaffold(
@@ -68,16 +68,17 @@ class _EventEditState extends State<EventEdit> {
                           ),
                         ),
                       ),
-                      EventsTab( reverse:  true ,allCategories, selectedTabIndex, (
-                        index,
-                        category,
-
-                      ) {
-                        setState(() {
-                          selectedTabIndex = index;
-                        });
-                      }),
-                      Text('Description',style: context.fonts.titleSmall),
+                      EventsTab(
+                        reverse: true,
+                        allCategories,
+                        selectedTabIndex,
+                        (index, category) {
+                          setState(() {
+                            selectedTabIndex = index;
+                          });
+                        },
+                      ),
+                      Text('Description', style: context.fonts.titleSmall),
                       AppFormField(
                         controller: titleController,
                         labelText: "Event Title",
@@ -88,7 +89,7 @@ class _EventEditState extends State<EventEdit> {
                           }
                         },
                       ),
-                      Text('Description',style: context.fonts.titleSmall),
+                      Text('Description', style: context.fonts.titleSmall),
                       AppFormField(
                         controller: descriptionController,
                         labelText: "Description",
@@ -142,9 +143,7 @@ class _EventEditState extends State<EventEdit> {
                               chooseTime();
                             },
                             child: Text(
-                              selectedTime == null
-                                  ? "${event.time}"
-                                  : selectedTime?.format(context) ?? "",
+                              " ${(selectedTime == null) ? eventTime : selectedTime?.format(context)}",
                               style: context.fonts.titleSmall,
                             ),
                           ),
@@ -156,8 +155,7 @@ class _EventEditState extends State<EventEdit> {
               ),
               ElevatedButton(
                 onPressed: () {
-
-                  updateEvent();
+                  AcceptOrNO();
                 },
                 child: Text(
                   "Update Event",
@@ -211,31 +209,36 @@ class _EventEditState extends State<EventEdit> {
     return isValid;
   }
 
-  void updateEvent() async {
+     void updateEvent() async {
     if (!isValidData()) {
       return;
     }
-      eventUpdated.id = eventId;
-      eventUpdated.title = titleController.text;
-      eventUpdated.desc =  descriptionController.text;
-      eventUpdated.date =  selectedDate;
-      eventUpdated.time =  selectedTime?.toDateTime();
-      eventUpdated.categoryId =  allCategories[selectedTabIndex].id;
-
-    context.showLoadingDialog(
-      message: "Update Event ...",
-      isDismissible: false,
+    eventUpdated.id = eventId;
+    eventUpdated.title = titleController.text;
+    eventUpdated.desc = descriptionController.text;
+    eventUpdated.date = selectedDate;
+    eventUpdated.time = selectedTime?.changeTimeToDateTime(
+      selectedDate,
+      selectedTime,
     );
+    eventUpdated.categoryId = allCategories[selectedTabIndex].id;
     await EventsDao.updateEvent(eventUpdated);
-    // hideLoading Dialog
-    Navigator.pop(context);
+  }
+
+  void AcceptOrNO() async {
     context.showMessageDialog(
-      "Event Updated Successfully",
-      posActionText: "ok",
-      onPosActionClick: () {
-        Navigator.pop(context);
-      },
+      'you need to Update your event',
       isDismissible: false,
+      negActionText: 'No',
+      onNegActionClick: () => Navigator.pop(context),
+      posActionText: 'Yes',
+      onPosActionClick: () async {
+        updateEvent();
+        Navigator.popUntil(
+          context,
+          (route) => route.settings.name == AppRoutes.HomeScreen.name,
+        );
+      },
     );
   }
 }

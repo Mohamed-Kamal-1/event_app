@@ -1,5 +1,6 @@
 import 'package:evently_app/core/colors/app_color.dart';
 import 'package:evently_app/core/routes/app_routes.dart';
+import 'package:evently_app/database/model/EventsDao.dart';
 import 'package:evently_app/extensions/date_time_extensions.dart';
 import 'package:evently_app/extensions/extension_home_screen.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ class EventDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Event event = ModalRoute.of(context)!.settings.arguments as Event;
+    final eventTime = TimeOfDay.fromDateTime(event.time!).format(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.whitePrimaryColor,
@@ -42,7 +44,18 @@ class EventDetails extends StatelessWidget {
           ),
           IconButton(
             color: Colors.red,
-            onPressed: () {},
+            onPressed: () {
+              context.showMessageDialog('Are you sure you want to delete this event ?',
+                negActionText: 'No',
+                onNegActionClick: () => Navigator.pop(context),
+                posActionText: 'Yes',
+                onPosActionClick: () {
+                  EventsDao.deleteEvent(event);
+                  Navigator.pop(context);
+                },
+                
+              );
+            },
             icon: Icon(Icons.delete),
           ),
         ],
@@ -103,7 +116,8 @@ class EventDetails extends StatelessWidget {
                             color: AppColor.bluePrimaryColor,
                           ),
                         ),
-                        Text("${event.time}", style: context.fonts.titleSmall),
+
+                        Text("$eventTime", style: context.fonts.titleSmall),
                       ],
                     ),
                   ],

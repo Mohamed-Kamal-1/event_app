@@ -13,9 +13,15 @@ class CompleteOnboardingScreen extends StatefulWidget {
       _CompleteOnboardingScreenState();
 }
 
+
 class _CompleteOnboardingScreenState extends State<CompleteOnboardingScreen> {
   bool? isLight;
+@override
+  void dispose() {
+    super.dispose();
 
+    _controller.dispose();
+  }
   final PageController _controller = PageController();
   List<OnboardingData> onboardingData = OnboardingData.getOnboardingData();
 

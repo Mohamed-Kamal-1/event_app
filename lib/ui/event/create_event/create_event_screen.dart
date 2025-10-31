@@ -26,18 +26,21 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   var formKey = GlobalKey<FormState>();
-@override
+
+  @override
   void dispose() {
     titleController.dispose();
     descriptionController.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.whitePrimaryColor,
         foregroundColor: AppColor.bluePrimaryColor,
-          title: Text('Create Event')),
+        title: Text('Create Event'),
+      ),
       body: Container(
         padding: EdgeInsets.all(16),
         child: Form(
@@ -63,17 +66,16 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                         ),
                       ),
                       EventsTab(
+                        allCategories,
                         reverse: true,
-                         allCategories,
-                        // reversed: true,
-                       selectedTabIndex,
-                         (index, category) {
+                        selectedTabIndex,
+                        (index, category) {
                           setState(() {
                             selectedTabIndex = index;
                           });
                         },
                       ),
-                      Text('title',style: context.fonts.titleSmall),
+                      Text('title', style: context.fonts.titleSmall),
                       AppFormField(
                         controller: titleController,
                         labelText: "Event Title",
@@ -84,7 +86,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                           }
                         },
                       ),
-                      Text('Description',style: context.fonts.titleSmall),
+                      Text('Description', style: context.fonts.titleSmall),
                       AppFormField(
                         controller: descriptionController,
                         labelText: "Event Description",
@@ -103,7 +105,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                               Icon(Icons.date_range_outlined),
                               Text(
                                 "Event Date",
-                                  style: context.fonts.titleSmall
+                                style: context.fonts.titleSmall,
                               ),
                             ],
                           ),
@@ -128,8 +130,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                               Icon(Icons.timer_outlined),
                               Text(
                                 "Event time",
-                                style: context.fonts.titleSmall
-
+                                style: context.fonts.titleSmall,
                               ),
                             ],
                           ),
@@ -212,7 +213,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
       title: titleController.text,
       desc: descriptionController.text,
       date: selectedDate,
-      time: selectedTime?.toDateTime(),
+      time: selectedTime?.changeTimeToDateTime(selectedDate, selectedTime),
       categoryId: allCategories[selectedTabIndex].id,
       creatorUserId: authProvider.getUser()?.userId,
     );
@@ -221,7 +222,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
       isDismissible: false,
     );
     await EventsDao.addEvent(event);
-    // hideLoading Dialog
+
     Navigator.pop(context);
     context.showMessageDialog(
       "Event Created Successfully",
@@ -233,3 +234,5 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
     );
   }
 }
+
+

@@ -19,20 +19,22 @@ class DisplayScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(child: Image.asset(onboardingData.image)),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                spacing: 44,
-                children: [
-                  Text(onboardingData.title, style: context.fonts.titleSmall?.copyWith(
-                    color: AppColor.bluePrimaryColor,
-                  )),
-                  Text(
-                    onboardingData.description,
-                    style: context.fonts.titleSmall,
-                  ),
-                ],
+            Flexible(child: Image.asset(onboardingData.image)),
+            Flexible(
+              child: Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: 44,
+                  children: [
+                    Text(onboardingData.title, style: context.fonts.titleSmall?.copyWith(
+                      color: AppColor.bluePrimaryColor,
+                    )),
+                    Text(
+                      onboardingData.description,
+                      style: context.fonts.titleSmall,
+                    ),
+                  ],
+                ),
               ),
             )
 

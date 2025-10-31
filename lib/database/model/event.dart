@@ -1,4 +1,4 @@
-import 'package:evently_app/core/images/app_image.dart';
+import '../../core/images/app_image.dart';
 
 class Event {
   String? id;
@@ -22,25 +22,25 @@ class Event {
 
   factory Event.fromMap(Map<String, dynamic>? map) {
     return Event(
-      id: map?['id'],
-      creatorUserId: map?['creatorUserId'],
-      title: map?['title'],
-      desc: map?['desc'],
-      categoryId: map?['categoryId'],
-      time: DateTime.fromMillisecondsSinceEpoch(map?['time']),
-      date: DateTime.fromMillisecondsSinceEpoch(map?['date']),
+        id: map?['id'],
+        creatorUserId: map?['creatorUserId'],
+        title: map?['title'],
+        desc: map?['desc'],
+        categoryId: map?['categoryId'],
+        time: DateTime.fromMillisecondsSinceEpoch(map?['time']),
+        date: DateTime.fromMillisecondsSinceEpoch(map?['date'])
     );
   }
 
-  Map<String, dynamic> toMap() {
+  Map<String,dynamic> toMap(){
     return {
-      'id': id,
-      'creatorUserId': creatorUserId,
-      'title': title,
-      'desc': desc,
-      'date': date?.millisecondsSinceEpoch, // convert Date time to milliseconds
-      'time': time?.millisecondsSinceEpoch, // convert Date time to milliseconds
-      'categoryId': categoryId,
+      'id' : id,
+      'creatorUserId' : creatorUserId,
+      'title' : title,
+      'desc' : desc,
+      'date' : date?.millisecondsSinceEpoch ,// convert Date time to milliseconds
+      'time' : time?.millisecondsSinceEpoch ,// convert Date time to milliseconds
+      'categoryId' : categoryId,
     };
   }
 

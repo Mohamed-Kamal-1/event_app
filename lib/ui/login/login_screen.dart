@@ -41,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+        padding:  EdgeInsets.symmetric(vertical: 24, horizontal: 22),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -87,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
-                    color: AppColor.offWhite,
+                    color: AppColor.bluePrimaryColor,
                     height: 1.5,
                     width: 129,
                   ),
@@ -99,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   Container(
-                    color: AppColor.offWhite,
+                    color: AppColor.bluePrimaryColor,
                     height: 1.5,
                     width: 129,
                   ),

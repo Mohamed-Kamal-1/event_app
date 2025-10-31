@@ -5,8 +5,13 @@ import '../colors/app_color.dart';
 
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
+    colorScheme: ColorScheme.light(
+      primary: AppColor.bluePrimaryColor,
+      secondary: AppColor.whitePrimaryColor,
+      brightness: Brightness.light,
+    ),
     // canvasColor: AppColor.gold,
-    appBarTheme: AppBarTheme(backgroundColor: AppColor.bluePrimaryColor),
+    appBarTheme: AppBarTheme(backgroundColor: AppColor.whitePrimaryColor),
     // scaffoldBackgroundColor: Colors.brown,
     scaffoldBackgroundColor: Colors.white,
     textTheme: TextTheme(
@@ -34,9 +39,9 @@ class AppTheme {
     ),
 
     inputDecorationTheme: InputDecorationThemeData(
-      filled:true ,
+      filled: true,
       focusColor: AppColor.bluePrimaryColor,
-      fillColor: AppColor.bluePrimaryColor,
+      fillColor: Colors.transparent,
       floatingLabelBehavior: FloatingLabelBehavior.auto,
       border: OutlineInputBorder(
         borderSide: BorderSide(color: AppColor.bluePrimaryColor, width: 1.5),
@@ -70,15 +75,20 @@ class AppTheme {
       ),
     ),
 
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: AppColor.bluePrimaryColor,
-        selectedItemColor: AppColor.whitePrimaryColor,
-        unselectedItemColor: AppColor.offWhite,
-      )
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: AppColor.bluePrimaryColor,
+      selectedItemColor: AppColor.whitePrimaryColor,
+      unselectedItemColor: AppColor.offWhite,
+    ),
   );
 
+  ////////////////////////////// Dark //////////////////////////////////////////////////
   static ThemeData darkTheme = ThemeData(
-    // canvasColor: AppColor.gold,
+    colorScheme: ColorScheme.dark(
+      primary: AppColor.darkBluePrimaryColor,
+      secondary: AppColor.bluePrimaryColor,
+      brightness: Brightness.dark,
+    ),
     appBarTheme: AppBarTheme(backgroundColor: AppColor.darkBluePrimaryColor),
     scaffoldBackgroundColor: AppColor.darkBluePrimaryColor,
     textTheme: TextTheme(
@@ -105,18 +115,25 @@ class AppTheme {
       ),
     ),
     inputDecorationTheme: InputDecorationThemeData(
-      // filled:true ,
+      filled:true ,
       focusColor: AppColor.darkBluePrimaryColor,
-      // fillColor: AppColor.bluePrimaryColor,
+      fillColor: Colors.transparent,
+
       floatingLabelBehavior: FloatingLabelBehavior.auto,
       border: OutlineInputBorder(
-        borderSide: BorderSide(color: AppColor.darkBluePrimaryColor, width: 1.5),
+        borderSide: BorderSide(
+          color: AppColor.darkBluePrimaryColor,
+          width: 1.5,
+        ),
         borderRadius: BorderRadius.circular(16),
       ),
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(color: AppColor.bluePrimaryColor, width: 1.5),
         borderRadius: BorderRadius.circular(16),
       ),
+      activeIndicatorBorder:BorderSide(
+        color: AppColor.bluePrimaryColor
+      ) ,
 
       labelStyle: GoogleFonts.inter(
         color: AppColor.offWhite,
@@ -144,6 +161,6 @@ class AppTheme {
       backgroundColor: AppColor.darkBluePrimaryColor,
       selectedItemColor: AppColor.whitePrimaryColor,
       unselectedItemColor: AppColor.offWhite,
-    )
+    ),
   );
 }

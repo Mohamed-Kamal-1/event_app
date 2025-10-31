@@ -23,7 +23,7 @@ class AppFormField extends StatefulWidget {
     this.isPassword = false,
     this.validator,
     this.controller,
-    this.lines,
+    this.lines = 1,
   });
 
   @override
@@ -52,12 +52,10 @@ class _AppFormFieldState extends State<AppFormField> {
         style: (isLight)
             ? GoogleFonts.jockeyOne(
                 fontSize: 18,
-                fontStyle: FontStyle.italic,
-                color: AppColor.black,
+                color: AppColor.bluePrimaryColor,
               )
             : GoogleFonts.jockeyOne(
                 fontSize: 18,
-                fontStyle: FontStyle.italic,
                 color: AppColor.whitePrimaryColor,
               ),
         keyboardType: widget.keyboardType,
@@ -65,7 +63,7 @@ class _AppFormFieldState extends State<AppFormField> {
           labelText: widget.labelText,
           prefixIcon: Icon(
             widget.icon,
-            // color: Theme.of(context).iconTheme.color,
+
           ),
           suffixIcon: widget.isPassword
               ? GestureDetector(

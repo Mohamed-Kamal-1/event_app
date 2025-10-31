@@ -7,8 +7,9 @@ typedef OnSelectedIndex = void Function(int index);
 
 class AppBottomNavigation extends StatefulWidget {
   OnSelectedIndex? onSelectedIndex;
+  bool isLight;
 
-  AppBottomNavigation(this.onSelectedIndex);
+  AppBottomNavigation(this.onSelectedIndex,this.isLight);
 
   @override
   State<AppBottomNavigation> createState() => _AppBottomNavigationState();
@@ -22,9 +23,8 @@ class _AppBottomNavigationState extends State<AppBottomNavigation> {
     return Theme(
       data: ThemeData(useMaterial3: false),
       child: BottomAppBar(
-
         shape: const CircularNotchedRectangle(),
-        color: AppColor.bluePrimaryColor,
+        color: (widget.isLight) ? AppColor.bluePrimaryColor : AppColor.darkBluePrimaryColor,
         notchMargin: 6,
         elevation: 0,
         child: BottomNavigationBar(

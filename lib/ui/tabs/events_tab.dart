@@ -11,8 +11,7 @@ class EventsTab extends StatelessWidget {
   int currentTabIndex;
   OnTabSelected onTabSelected;
   bool reverse;
-  EventsTab(this.categories, this.currentTabIndex, this.onTabSelected,
-      {this.reverse = false});
+  EventsTab(this.categories, this.currentTabIndex, this.onTabSelected,{this.reverse = false});
 
 
 
@@ -35,6 +34,7 @@ class EventsTab extends StatelessWidget {
         },
         tabs: categories.map((category) {
           return TabbarItem(
+            reverse: reverse,
             title: translateTitle(category.title, context),
             icon: category.iconData,
             currentIndex: currentTabIndex,

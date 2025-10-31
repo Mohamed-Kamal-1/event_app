@@ -15,7 +15,6 @@ class RegistrScreen extends StatelessWidget {
     AppLocalizations? appLocale = AppLocalizations.of(context);
 
     return Scaffold(
-
       appBar: AppBar(
         foregroundColor: AppColor.bluePrimaryColor,
         title: Text(
@@ -28,7 +27,7 @@ class RegistrScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 22),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -52,8 +51,11 @@ class RegistrScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(appLocale.alreadyHaveAccount,style: textTheme.titleSmall,),
-                  SizedBox(width: 10,),
+                  Text(
+                    appLocale.alreadyHaveAccount,
+                    style: textTheme.titleSmall,
+                  ),
+                  SizedBox(width: 10),
                   GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(context, AppRoutes.LoginScreen.name);

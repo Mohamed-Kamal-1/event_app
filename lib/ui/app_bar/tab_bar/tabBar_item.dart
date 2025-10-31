@@ -1,49 +1,61 @@
+import 'package:evently_app/extensions/extension_home_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/colors/app_color.dart';
 
-class TabbarItem extends StatefulWidget {
+class TabbarItem extends StatelessWidget {
   final String title;
   final IconData icon;
   final int index;
   final int currentIndex;
-   TabbarItem({
+  bool reverse;
+
+  TabbarItem({
+    required this.reverse,
     required this.title,
     required this.icon,
     required this.index,
     required this.currentIndex,
   });
 
-  @override
-  State<TabbarItem> createState() => _TabbarItemState();
-}
+  bool get isSelected => index == currentIndex;
 
-class _TabbarItemState extends State<TabbarItem> {
   @override
   Widget build(BuildContext context) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
+    final Color borderColor = reverse
+        ? AppColor.bluePrimaryColor
+        : Colors.white;
+
+    final Color backgroundColor = reverse
+        ? (isSelected ? AppColor.bluePrimaryColor : Colors.transparent)
+        : (isSelected ? Colors.white : Colors.transparent);
+    final Color iconAndTextColor = reverse
+        ? (isSelected ? Colors.white : AppColor.bluePrimaryColor)
+        : (isSelected ? AppColor.bluePrimaryColor : Colors.white);
+
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color:  (widget.currentIndex == widget.index) ? Colors.white :  Colors.transparent, //inside:,
-        border: Border.all(width: 1, color: Colors.white), // border
+        color: backgroundColor,
+        border: Border.all(width: 1, color: borderColor),
         borderRadius: BorderRadius.circular(46),
       ),
       child: Row(
         children: [
           Icon(
-            widget.icon,
-            color: widget.currentIndex == widget.index
-                ? AppColor.bluePrimaryColor //inside icon when select
-                : Colors.white,
+            icon,
+            color: iconAndTextColor,
+
           ),
           const SizedBox(width: 10),
           Text(
-            widget.title,
-            style: textTheme.titleSmall?.copyWith(
-              color: widget.currentIndex == widget.index
-                  ? AppColor.bluePrimaryColor // inside text when select
-                  : Colors.white,
+            title,
+            style: context.fonts.titleSmall?.copyWith(
+              // color: (!reverse) ?  ((currentIndex == index) ?  AppColor.bluePrimaryColor : Colors.white ) : ((currentIndex == index) ?  Colors.white : AppColor.bluePrimaryColor),
+              color: iconAndTextColor,
+              // color: widget.currentIndex == widget.index
+              //     ? AppColor.bluePrimaryColor // inside text when select
+              //     : Colors.white,
             ),
           ),
         ],
