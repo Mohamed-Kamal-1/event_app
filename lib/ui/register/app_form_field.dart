@@ -5,25 +5,28 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-
 typedef Validator = String? Function(String? text);
+typedef EditText = String? Function(String? text);
 
 class AppFormField extends StatefulWidget {
   String labelText;
+  EditText? editText;
   IconData? icon;
   TextInputType keyboardType;
   bool isPassword;
   Validator? validator;
   TextEditingController? controller;
   int? lines;
+
   AppFormField({
     required this.labelText,
-     this.icon,
+    this.icon,
     this.keyboardType = TextInputType.text,
     this.isPassword = false,
     this.validator,
     this.controller,
     this.lines = 1,
+    this.editText,
   });
 
   @override
@@ -43,6 +46,7 @@ class _AppFormFieldState extends State<AppFormField> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: TextFormField(
+        onChanged: widget.editText,
         maxLines: widget.lines,
         controller: widget.controller,
         // autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -61,16 +65,12 @@ class _AppFormFieldState extends State<AppFormField> {
         keyboardType: widget.keyboardType,
         decoration: InputDecoration(
           labelText: widget.labelText,
-          prefixIcon: Icon(
-            widget.icon,
-
-          ),
+          prefixIcon: Icon(widget.icon),
           suffixIcon: widget.isPassword
               ? GestureDetector(
                   onTap: () {
                     setState(() {
                       isTextvisable = !isTextvisable;
-                      print('is password is : ${widget.isPassword}');
                     });
                   },
                   child: Icon(

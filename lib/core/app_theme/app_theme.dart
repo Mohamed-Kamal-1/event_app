@@ -8,6 +8,7 @@ class AppTheme {
     colorScheme: ColorScheme.light(
       primary: AppColor.bluePrimaryColor,
       secondary: AppColor.whitePrimaryColor,
+      onPrimary: AppColor.whitePrimaryColor,
       brightness: Brightness.light,
     ),
     // canvasColor: AppColor.gold,

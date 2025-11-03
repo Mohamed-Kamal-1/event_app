@@ -1,8 +1,8 @@
 import 'package:evently_app/core/colors/app_color.dart';
-import 'package:evently_app/core/routes/app_routes.dart';
 import 'package:evently_app/database/model/EventsDao.dart';
 import 'package:evently_app/extensions/date_time_extensions.dart';
 import 'package:evently_app/extensions/extension_home_screen.dart';
+import 'package:evently_app/ui/event/event_edit/event_edit.dart';
 import 'package:flutter/material.dart';
 import '../../../database/model/category.dart';
 import '../../../database/model/event.dart';
@@ -34,10 +34,11 @@ class EventDetails extends StatelessWidget {
             enableFeedback: false,
             color: AppColor.bluePrimaryColor,
             onPressed: () {
-              Navigator.pushNamed(
+              Navigator.push(
                 context,
-                AppRoutes.EventEdit.name,
-                arguments: event,
+                MaterialPageRoute(
+                  builder: (context) => EventEdit(event: event),
+                ),
               );
             },
             icon: Icon(Icons.edit),
@@ -45,7 +46,8 @@ class EventDetails extends StatelessWidget {
           IconButton(
             color: Colors.red,
             onPressed: () {
-              context.showMessageDialog('Are you sure you want to delete this event ?',
+              context.showMessageDialog(
+                'Are you sure you want to delete this event ?',
                 negActionText: 'No',
                 onNegActionClick: () => Navigator.pop(context),
                 posActionText: 'Yes',
@@ -53,7 +55,6 @@ class EventDetails extends StatelessWidget {
                   EventsDao.deleteEvent(event);
                   Navigator.pop(context);
                 },
-                
               );
             },
             icon: Icon(Icons.delete),

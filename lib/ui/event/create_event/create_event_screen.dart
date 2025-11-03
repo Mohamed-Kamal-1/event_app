@@ -1,4 +1,3 @@
-import 'package:evently_app/core/colors/app_color.dart';
 import 'package:evently_app/extensions/date_time_extensions.dart';
 import 'package:evently_app/extensions/extension_home_screen.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +28,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
 
   @override
   void dispose() {
+    super.dispose();
     titleController.dispose();
     descriptionController.dispose();
   }
@@ -37,8 +37,8 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColor.whitePrimaryColor,
-        foregroundColor: AppColor.bluePrimaryColor,
+        backgroundColor: context.color.secondary,
+        // foregroundColor: AppColor.bluePrimaryColor,
         title: Text('Create Event'),
       ),
       body: Container(
@@ -95,6 +95,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                           if (text == null || text.trim().isEmpty) {
                             return "please enter description";
                           }
+                          return null;
                         },
                       ),
                       Row(

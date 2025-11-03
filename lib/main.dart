@@ -5,7 +5,6 @@ import 'package:evently_app/providers/app_language_provider.dart';
 import 'package:evently_app/providers/app_theme_provider.dart';
 import 'package:evently_app/ui/event/create_event/create_event_screen.dart';
 import 'package:evently_app/ui/event/event_details/event_details.dart';
-import 'package:evently_app/ui/event/event_edit/event_edit.dart';
 import 'package:evently_app/ui/home_screen/home_screen.dart';
 import 'package:evently_app/ui/home_screen/tabs/map_tab/map_tab.dart';
 import 'package:evently_app/ui/login/login_screen.dart';
@@ -33,13 +32,13 @@ void main() async {
         ChangeNotifierProvider(create: (context) => AppThemeProvider()),
         ChangeNotifierProvider(create: (context) => AppAuthProvider()),
       ],
-      child: MainApp(),
+      child: MyApp(),
     ),
   );
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +72,6 @@ class MainApp extends StatelessWidget {
         AppRoutes.MapTab.name: (context) => MapTab(),
         AppRoutes.CompleteOnboardingScreen.name: (context) => CompleteOnboardingScreen(),
         AppRoutes.EventDetails.name: (context) => EventDetails(),
-        AppRoutes.EventEdit.name: (context) => EventEdit(),
 
       },
     );

@@ -96,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       : Icon(Icons.sunny),
                 ),
                 FloatingActionButton(
-                  key: Key('key1'),
+                  heroTag: null,
                   mini: true,
                   elevation: 0,
                   shape: ContinuousRectangleBorder(

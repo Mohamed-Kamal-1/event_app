@@ -25,6 +25,8 @@ class _MapTabState extends State<MapTab> {
     return intiLocation == null
         ? Center(child: CircularProgressIndicator())
         : GoogleMap(
+      // cloudMapId: ,
+      tiltGesturesEnabled: false,
       compassEnabled: true,
             myLocationEnabled: true,
             myLocationButtonEnabled: true,

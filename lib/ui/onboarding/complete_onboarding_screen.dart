@@ -97,22 +97,24 @@ class _CompleteOnboardingScreenState extends State<CompleteOnboardingScreen> {
                   dotColor: AppColor.bluePrimaryColor,
                 ),
               ),
-              FloatingActionButton(
-                onPressed: () {
-                  clickOnNextPage();
-                },
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-                foregroundColor: AppColor.bluePrimaryColor,
-                mini: true,
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(
-                    color: AppColor.bluePrimaryColor,
-                    width: 1.5,
+              SafeArea(
+                child: FloatingActionButton(
+                  onPressed: () {
+                    clickOnNextPage();
+                  },
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  foregroundColor: AppColor.bluePrimaryColor,
+                  mini: true,
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      color: AppColor.bluePrimaryColor,
+                      width: 1.5,
+                    ),
+                    borderRadius: BorderRadiusGeometry.circular(360),
                   ),
-                  borderRadius: BorderRadiusGeometry.circular(360),
+                  child: Icon(Icons.arrow_back),
                 ),
-                child: Icon(Icons.arrow_back),
               ),
             ],
           ),

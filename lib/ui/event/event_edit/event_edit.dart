@@ -10,6 +10,10 @@ import '../../register/app_form_field.dart';
 import '../../tabs/events_tab.dart';
 
 class EventEdit extends StatefulWidget {
+  Event event;
+
+  EventEdit({required this.event});
+
   @override
   State<EventEdit> createState() => _EventEditState();
 }
@@ -21,23 +25,33 @@ class _EventEditState extends State<EventEdit> {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   var formKey = GlobalKey<FormState>();
-  Event eventUpdated = Event();
-  late String? eventId;
+
+  // Event eventUpdated = Event();
+  // String? titleEvent;
+  // String? descEvent;
+  // late String? eventId;
+
+  // @override
+  // void didChangeDependencies() {
+  //   final event = ModalRoute.of(context)!.settings.arguments as Event;
+  //   eventUpdated = event;
+  //   titleController.text = titleEvent ?? 'error in title';
+  //   descriptionController.text = descEvent ?? "error in description";
+  // }
 
   @override
-  void dispose() {
-    titleController.dispose();
-    descriptionController.dispose();
+  void initState() {
+    super.initState();
+    titleController.text = widget.event.title!;
+    descriptionController.text = widget.event.desc!;
   }
 
   @override
   Widget build(BuildContext context) {
-    final event = ModalRoute.of(context)!.settings.arguments as Event;
-    eventId = event.id;
-    titleController.text = event.title!;
-    descriptionController.text = event.desc!;
-    final eventTime = TimeOfDay.fromDateTime(event.time!).format(context);
-    // selectedTabIndex = allCategories.indexOf(category);
+    final eventTime = TimeOfDay.fromDateTime(
+      widget.event.time!,
+    ).format(context);
+    TimeOfDay initialTime = TimeOfDay.fromDateTime(widget.event.time!);
 
     return Scaffold(
       appBar: AppBar(
@@ -78,15 +92,21 @@ class _EventEditState extends State<EventEdit> {
                           });
                         },
                       ),
-                      Text('Description', style: context.fonts.titleSmall),
+                      Text('title', style: context.fonts.titleSmall),
                       AppFormField(
                         controller: titleController,
+                        editText: (title) {
+                          widget.event.title = title ?? "error in title Input";
+                          titleController.text = title!;
+                          return null;
+                        },
                         labelText: "Event Title",
                         icon: Icons.edit,
                         validator: (text) {
                           if (text == null || text.trim().isEmpty) {
                             return "please enter title";
                           }
+                          return null;
                         },
                       ),
                       Text('Description', style: context.fonts.titleSmall),
@@ -94,6 +114,12 @@ class _EventEditState extends State<EventEdit> {
                         controller: descriptionController,
                         labelText: "Description",
                         lines: 5,
+                        editText: (description) {
+                          widget.event.desc =
+                              description ?? "error in Description Input";
+                          descriptionController.text = description!;
+                          return null;
+                        },
                         validator: (text) {
                           if (text == null || text.trim().isEmpty) {
                             return "please enter description";
@@ -115,11 +141,11 @@ class _EventEditState extends State<EventEdit> {
                           ),
                           TextButton(
                             onPressed: () {
-                              chooseDate();
+                              chooseDate(widget.event.date);
                             },
                             child: Text(
                               selectedDate == null
-                                  ? "${event.date?.format()}"
+                                  ? "${widget.event.date?.format()}"
                                   : selectedDate?.format() ?? "",
                               style: context.fonts.titleSmall,
                             ),
@@ -140,7 +166,7 @@ class _EventEditState extends State<EventEdit> {
                           ),
                           TextButton(
                             onPressed: () {
-                              chooseTime();
+                              chooseTime(initialTime);
                             },
                             child: Text(
                               " ${(selectedTime == null) ? eventTime : selectedTime?.format(context)}",
@@ -174,25 +200,30 @@ class _EventEditState extends State<EventEdit> {
   DateTime? selectedDate;
   TimeOfDay? selectedTime;
 
-  void chooseDate() async {
+  void chooseDate(DateTime? initialDate) async {
     var date = await showDatePicker(
+      initialDate: selectedDate ?? initialDate,
       context: context,
       firstDate: DateTime.now(),
       lastDate: DateTime.now().add(Duration(days: 60)),
     );
-    setState(() {
-      selectedDate = date;
-    });
+    if (date != null) {
+      setState(() {
+        selectedDate = date;
+      });
+    }
   }
 
-  void chooseTime() async {
+  void chooseTime(TimeOfDay initialTime) async {
     var time = await showTimePicker(
       context: context,
-      initialTime: TimeOfDay.now(),
+      initialTime: selectedTime ?? initialTime,
     );
-    setState(() {
-      selectedTime = time;
-    });
+    if (time != null) {
+      setState(() {
+        selectedTime = time;
+      });
+    }
   }
 
   bool isValidData() {
@@ -209,20 +240,18 @@ class _EventEditState extends State<EventEdit> {
     return isValid;
   }
 
-     void updateEvent() async {
+  void updateEvent() async {
     if (!isValidData()) {
       return;
     }
-    eventUpdated.id = eventId;
-    eventUpdated.title = titleController.text;
-    eventUpdated.desc = descriptionController.text;
-    eventUpdated.date = selectedDate;
-    eventUpdated.time = selectedTime?.changeTimeToDateTime(
+    widget.event.time = selectedTime?.changeTimeToDateTime(
       selectedDate,
       selectedTime,
     );
-    eventUpdated.categoryId = allCategories[selectedTabIndex].id;
-    await EventsDao.updateEvent(eventUpdated);
+
+    widget.event.categoryId = allCategories[selectedTabIndex].id;
+    widget.event.date = selectedDate;
+    await EventsDao.updateEvent(widget.event);
   }
 
   void AcceptOrNO() async {
