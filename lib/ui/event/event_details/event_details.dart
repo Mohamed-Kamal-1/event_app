@@ -25,7 +25,6 @@ class EventDetails extends StatelessWidget {
     final eventTime = TimeOfDay.fromDateTime(event.time!).format(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColor.whitePrimaryColor,
         foregroundColor: AppColor.bluePrimaryColor,
         title: Text('Event Details'),
         centerTitle: true,

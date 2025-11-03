@@ -1,3 +1,4 @@
+import 'package:evently_app/core/colors/app_color.dart';
 import 'package:evently_app/core/images/app_image.dart';
 import 'package:evently_app/extensions/extension_home_screen.dart';
 import 'package:evently_app/providers/app_auth_provider.dart';
@@ -7,14 +8,10 @@ import 'package:provider/provider.dart';
 
 import '../../../../core/routes/app_routes.dart';
 
-class ProfileTab extends StatefulWidget {
+class ProfileTab extends StatelessWidget {
 
-  @override
-  State<ProfileTab> createState() => _ProfileTabState();
-}
-
-class _ProfileTabState extends State<ProfileTab> {
   String selectedLanguage = 'Arabic';
+
   String selectedTheme = 'Light';
 
   @override
@@ -25,7 +22,6 @@ class _ProfileTabState extends State<ProfileTab> {
     String?  email = appAuthProvider.getUser()?.email;
     return Scaffold(
       body: Column(
-
         children: [
           Container(
             margin: EdgeInsets.only(top: 30),
@@ -144,6 +140,4 @@ class _ProfileTabState extends State<ProfileTab> {
       ),
     );
   }
-
-
 }

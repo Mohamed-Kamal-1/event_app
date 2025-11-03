@@ -9,11 +9,11 @@ class AppTheme {
       primary: AppColor.bluePrimaryColor,
       secondary: AppColor.whitePrimaryColor,
       onPrimary: AppColor.whitePrimaryColor,
+      onPrimaryFixed: AppColor.bluePrimaryColor,
       brightness: Brightness.light,
     ),
     // canvasColor: AppColor.gold,
     appBarTheme: AppBarTheme(backgroundColor: AppColor.whitePrimaryColor),
-    // scaffoldBackgroundColor: Colors.brown,
     scaffoldBackgroundColor: Colors.white,
     textTheme: TextTheme(
       titleMedium: GoogleFonts.inter(
@@ -87,7 +87,8 @@ class AppTheme {
   static ThemeData darkTheme = ThemeData(
     colorScheme: ColorScheme.dark(
       primary: AppColor.darkBluePrimaryColor,
-      secondary: AppColor.bluePrimaryColor,
+      secondary: AppColor.darkBluePrimaryColor,
+      onPrimaryFixed: AppColor.whitePrimaryColor,
       brightness: Brightness.dark,
     ),
     appBarTheme: AppBarTheme(backgroundColor: AppColor.darkBluePrimaryColor),

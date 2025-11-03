@@ -55,7 +55,6 @@ class _EventEditState extends State<EventEdit> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColor.whitePrimaryColor,
         foregroundColor: AppColor.bluePrimaryColor,
         title: Text('Edit Event'),
       ),
@@ -95,11 +94,6 @@ class _EventEditState extends State<EventEdit> {
                       Text('title', style: context.fonts.titleSmall),
                       AppFormField(
                         controller: titleController,
-                        editText: (title) {
-                          widget.event.title = title ?? "error in title Input";
-                          titleController.text = title!;
-                          return null;
-                        },
                         labelText: "Event Title",
                         icon: Icons.edit,
                         validator: (text) {
@@ -114,12 +108,6 @@ class _EventEditState extends State<EventEdit> {
                         controller: descriptionController,
                         labelText: "Description",
                         lines: 5,
-                        editText: (description) {
-                          widget.event.desc =
-                              description ?? "error in Description Input";
-                          descriptionController.text = description!;
-                          return null;
-                        },
                         validator: (text) {
                           if (text == null || text.trim().isEmpty) {
                             return "please enter description";
@@ -226,31 +214,37 @@ class _EventEditState extends State<EventEdit> {
     }
   }
 
-  bool isValidData() {
-    var isValid = formKey.currentState?.validate() ?? false;
-    if (selectedDate == null) {
-      // show error message
-      context.showMessageDialog("please Choose Event Date");
-      isValid = false;
-    } else if (selectedTime == null) {
-      // show error message
-      context.showMessageDialog("please Choose Event time");
-      isValid = false;
-    }
-    return isValid;
-  }
+  // bool isValidData() {
+  //   var isValid = formKey.currentState?.validate() ?? false;
+  //   if (selectedDate == null) {
+  //     // show error message
+  //     context.showMessageDialog("please Choose Event Date");
+  //     isValid = false;
+  //   } else if (selectedTime == null) {
+  //     // show error message
+  //     context.showMessageDialog("please Choose Event time");
+  //     isValid = false;
+  //   }
+  //   return isValid;
+  // }
 
   void updateEvent() async {
-    if (!isValidData()) {
-      return;
+    widget.event.title = titleController.text;
+    widget.event.desc = descriptionController.text;
+    if (selectedTime != TimeOfDay.fromDateTime(widget.event.time!) &&
+        selectedTime != null) {
+      widget.event.time = selectedTime?.changeTimeToDateTime(
+        selectedDate ?? widget.event.date,
+        selectedTime,
+      );
     }
-    widget.event.time = selectedTime?.changeTimeToDateTime(
-      selectedDate,
-      selectedTime,
-    );
+
+    if (selectedDate != widget.event.date && selectedDate != null) {
+      widget.event.date = selectedDate;
+    }
+
 
     widget.event.categoryId = allCategories[selectedTabIndex].id;
-    widget.event.date = selectedDate;
     await EventsDao.updateEvent(widget.event);
   }
 
@@ -263,10 +257,7 @@ class _EventEditState extends State<EventEdit> {
       posActionText: 'Yes',
       onPosActionClick: () async {
         updateEvent();
-        Navigator.popUntil(
-          context,
-          (route) => route.settings.name == AppRoutes.HomeScreen.name,
-        );
+        Navigator.popUntil(context, (route) => route.isFirst);
       },
     );
   }

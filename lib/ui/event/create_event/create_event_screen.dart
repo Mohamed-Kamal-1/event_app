@@ -3,6 +3,7 @@ import 'package:evently_app/extensions/extension_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../core/colors/app_color.dart';
 import '../../../database/model/EventsDao.dart';
 import '../../../database/model/category.dart';
 import '../../../database/model/event.dart';
@@ -37,8 +38,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: context.color.secondary,
-        // foregroundColor: AppColor.bluePrimaryColor,
+        foregroundColor: AppColor.bluePrimaryColor,
         title: Text('Create Event'),
       ),
       body: Container(
