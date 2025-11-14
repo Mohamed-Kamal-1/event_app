@@ -6,10 +6,10 @@ import '../../core/colors/app_color.dart';
 typedef OnSelectedIndex = void Function(int index);
 
 class AppBottomNavigation extends StatefulWidget {
-  OnSelectedIndex? onSelectedIndex;
-  bool isLight;
+  final  OnSelectedIndex? onSelectedIndex;
+  final bool isLight;
 
-  AppBottomNavigation(this.onSelectedIndex,this.isLight);
+  const AppBottomNavigation(this.onSelectedIndex,this.isLight, {super.key});
 
   @override
   State<AppBottomNavigation> createState() => _AppBottomNavigationState();

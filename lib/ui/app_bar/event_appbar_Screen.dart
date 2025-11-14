@@ -1,5 +1,4 @@
 import 'package:evently_app/core/colors/app_color.dart';
-import 'package:evently_app/extensions/extension_home_screen.dart';
 import 'package:flutter/material.dart';
 import '../../core/images/app_image.dart';
 import '../../l10n/app_localizations.dart';

@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import '../../../core/colors/app_color.dart';
 
 class BorderWidget extends StatelessWidget {
-  Widget child;
+  final Widget child;
 
-  IconData icon;
+  final IconData icon;
 
-  BorderWidget({super.key, required this.child, required this.icon});
+  const BorderWidget({super.key, required this.child, required this.icon});
 
   @override
   Widget build(BuildContext context) {

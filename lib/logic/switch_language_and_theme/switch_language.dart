@@ -11,15 +11,14 @@ enum Languages { english, arabic }
 
 class AppSwitchLanguage extends StatelessWidget {
   static List<Languages> languages = [Languages.english, Languages.arabic];
-  double height;
+  final double height;
 
-  AppSwitchLanguage({this.height = 50.0});
+  const AppSwitchLanguage({super.key, this.height = 50.0});
 
   @override
   Widget build(BuildContext context) {
-   final AppLanguageProvider appLanguageProvider = Provider.of<AppLanguageProvider>(
-      context,
-    );
+    final AppLanguageProvider appLanguageProvider =
+        Provider.of<AppLanguageProvider>(context);
     Languages geSelectedLanguage() {
       if (appLanguageProvider.getAppLanguage() == 'en') {
         return Languages.english;
@@ -54,7 +53,7 @@ class AppSwitchLanguage extends StatelessWidget {
         }
       },
 
-      style:  ToggleStyle(
+      style: ToggleStyle(
         indicatorBorder: BoxBorder.all(
           width: 3,
           color: AppColor.bluePrimaryColor,

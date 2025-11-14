@@ -10,9 +10,9 @@ import '../../../core/colors/app_color.dart';
 import '../../../providers/app_theme_provider.dart';
 
 class EventsCard extends StatefulWidget {
-  Event event;
+  final Event event;
 
-  EventsCard({required this.event});
+  const EventsCard({super.key, required this.event});
 
   @override
   State<EventsCard> createState() => _EventsCardState();
@@ -44,7 +44,6 @@ class _EventsCardState extends State<EventsCard> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-
             width: 55,
             alignment: Alignment.center,
             margin: EdgeInsets.all(8),
@@ -86,7 +85,11 @@ class _EventsCardState extends State<EventsCard> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(textAlign: TextAlign.center ,'${widget.event.desc}', style: context.fonts.titleSmall),
+                Text(
+                  textAlign: TextAlign.center,
+                  '${widget.event.desc}',
+                  style: context.fonts.titleSmall,
+                ),
                 GestureDetector(
                   onTap: () {
                     toggleFavorite(widget.event);

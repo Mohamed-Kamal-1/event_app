@@ -9,16 +9,16 @@ typedef Validator = String? Function(String? text);
 typedef EditText = String? Function(String? text);
 
 class AppFormField extends StatefulWidget {
-  String labelText;
-  EditText? editText;
-  IconData? icon;
-  TextInputType keyboardType;
-  bool isPassword;
-  Validator? validator;
-  TextEditingController? controller;
-  int? lines;
+  final String labelText;
+  final EditText? editText;
+  final IconData? icon;
+  final TextInputType keyboardType;
+  final bool isPassword;
+  final Validator? validator;
+  final TextEditingController? controller;
+  final int? lines;
 
-  AppFormField({
+  const AppFormField({super.key,
     required this.labelText,
     this.icon,
     this.keyboardType = TextInputType.text,

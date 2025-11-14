@@ -6,9 +6,9 @@ import '../app_bar/event_appbar_Screen.dart';
 import 'onboarding_data.dart';
 
 class DisplayScreen extends StatelessWidget {
-  OnboardingData onboardingData;
+  final OnboardingData onboardingData;
 
-  DisplayScreen({required this.onboardingData});
+ const DisplayScreen({super.key, required this.onboardingData});
 
   @override
   Widget build(BuildContext context) {

@@ -8,9 +8,9 @@ import '../../../../providers/app_auth_provider.dart';
 import '../../events/events_card.dart';
 
 class StreamUpdateWidget extends StatelessWidget {
-  int selectedCategoryIndex;
+  final int selectedCategoryIndex;
    StreamUpdateWidget({super.key,required this.selectedCategoryIndex});
-  List<Category> allCategories = Category.getCategories(includeAll: true);
+  final List<Category> allCategories = Category.getCategories(includeAll: true);
 
   @override
   Widget build(BuildContext context) {

@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 
 typedef SelectTime = Function(TimeOfDay time);
 class EventTimeWidget extends StatefulWidget {
-  Event event;
-  SelectTime selectTime;
-  EventTimeWidget({super.key, required this.event,required this.selectTime});
+  final Event event;
+  final SelectTime selectTime;
+ const EventTimeWidget({super.key, required this.event,required this.selectTime});
 
   @override
   State<EventTimeWidget> createState() => _EventTimeWidgetState();

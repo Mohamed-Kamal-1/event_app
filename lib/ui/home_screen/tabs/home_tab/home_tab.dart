@@ -4,9 +4,9 @@ import 'package:evently_app/ui/home_screen/tabs/home_tab/stream_update_widget.da
 import 'package:flutter/material.dart';
 
 class HomeTab extends StatelessWidget {
-  HomeTab();
+   const HomeTab({super.key});
 
-  int selectedCategoryIndex = 0;
+   final int selectedCategoryIndex = 0;
 
 
 

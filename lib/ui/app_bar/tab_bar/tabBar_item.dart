@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/colors/app_color.dart';
 
-class TabbarItem extends StatelessWidget {
+class TabBarItem extends StatelessWidget {
   final String title;
   final IconData icon;
   final int index;
   final int currentIndex;
-  bool reverse;
+  final bool reverse;
 
-  TabbarItem({
+  TabBarItem({
     required this.reverse,
     required this.title,
     required this.icon,

@@ -84,6 +84,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                           if (text == null || text.trim().isEmpty) {
                             return "please enter title";
                           }
+                          return null;
                         },
                       ),
                       Text('Description', style: context.fonts.titleSmall),

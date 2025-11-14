@@ -11,9 +11,9 @@ import '../../register/app_form_field.dart';
 import '../../tabs/events_tab.dart';
 
 class EventEdit extends StatefulWidget {
-  Event event;
+  final Event event;
 
-  EventEdit({required this.event});
+  const EventEdit({super.key, required this.event});
 
   @override
   State<EventEdit> createState() => _EventEditState();

@@ -1,4 +1,3 @@
-import 'package:evently_app/core/colors/app_color.dart';
 import 'package:evently_app/core/images/app_image.dart';
 import 'package:evently_app/extensions/extension_home_screen.dart';
 import 'package:evently_app/providers/app_auth_provider.dart';
@@ -10,9 +9,11 @@ import '../../../../core/routes/app_routes.dart';
 
 class ProfileTab extends StatelessWidget {
 
-  String selectedLanguage = 'Arabic';
+  final String selectedLanguage = 'Arabic';
 
-  String selectedTheme = 'Light';
+  final String selectedTheme = 'Light';
+
+  const ProfileTab({super.key});
 
   @override
   Widget build(BuildContext context) {

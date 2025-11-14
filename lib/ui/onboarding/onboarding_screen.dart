@@ -11,7 +11,9 @@ import '../../logic/switch_language_and_theme/switch_language.dart';
 import '../app_bar/event_appbar_Screen.dart';
 
 class OnboardingScreen extends StatelessWidget {
-  bool isDarkTheme = false;
+  final  bool isDarkTheme = false;
+
+  const OnboardingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
