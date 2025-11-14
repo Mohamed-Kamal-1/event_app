@@ -1,29 +1,33 @@
-  import 'package:evently_app/SharedPreferences/onboarding_shared_preferences.dart';
 import 'package:evently_app/core/colors/app_color.dart';
-  import 'package:evently_app/core/routes/app_routes.dart';
-  import 'package:evently_app/logic/switch_language_and_theme/switch_theme.dart';
-  import 'package:evently_app/providers/app_theme_provider.dart';
-  import 'package:flutter/material.dart';
-  import 'package:provider/provider.dart';
+import 'package:evently_app/core/routes/app_routes.dart';
+import 'package:evently_app/logic/switch_language_and_theme/switch_theme.dart';
+import 'package:evently_app/providers/app_theme_provider.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-  import '../../core/intro_screen/onBoarding_image.dart';
-  import '../../l10n/app_localizations.dart';
-  import '../../logic/switch_language_and_theme/switch_language.dart';
-  import '../app_bar/event_appbar_Screen.dart';
+import '../../core/intro_screen/onBoarding_image.dart';
+import '../../l10n/app_localizations.dart';
+import '../../logic/switch_language_and_theme/switch_language.dart';
+import '../app_bar/event_appbar_Screen.dart';
 
-  class OnboardingScreen extends StatelessWidget {
-    bool isDarkTheme = false;
+class OnboardingScreen extends StatelessWidget {
+  bool isDarkTheme = false;
 
-    @override
-    Widget build(BuildContext context) {
-      AppThemeProvider appThemeProvider = Provider.of<AppThemeProvider>(context);
+  @override
+  Widget build(BuildContext context) {
+    final AppThemeProvider appThemeProvider = Provider.of<AppThemeProvider>(
+      context,
+    );
 
-      TextTheme textTheme = Theme.of(context).textTheme;
-      AppLocalizations? appLocale = AppLocalizations.of(context);
-      return Scaffold(
-        appBar: EventAppBarScreen(),
+    final TextTheme textTheme = Theme.of(context).textTheme;
+    final AppLocalizations? appLocale = AppLocalizations.of(context);
+    return SafeArea(
+      top: false,
+      bottom: true,
+      child: Scaffold(
+        appBar: const EventAppBarScreen(),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsetsDirectional.symmetric(horizontal: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -69,7 +73,7 @@ import 'package:evently_app/core/colors/app_color.dart';
                             AppSwitchLanguage(),
                           ],
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -84,36 +88,33 @@ import 'package:evently_app/core/colors/app_color.dart';
                         ),
                       ],
                     ),
-                    SafeArea(
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColor.bluePrimaryColor,
-                          padding: EdgeInsets.symmetric(vertical: 16),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
+
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColor.bluePrimaryColor,
+                        padding: EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
                         ),
-                        onPressed: () async {
-                          bool isLightTheme = true;
+                      ),
+                      onPressed: () async {
+                        bool isLightTheme = true;
 
-                          if (appThemeProvider.getSelectedThemMode() == ThemeMode.dark) {
-                            isLightTheme = false;
-                          }
-                          Navigator.pushNamed(context, AppRoutes.CompleteOnboardingScreen.name,arguments: isLightTheme);
-                          // if(OnboardingSharedPreferences.isSaved()){
-                          //      Navigator.pushReplacementNamed(context, AppRoutes.LoginScreen.name,arguments: isLightTheme);
-                          //
-                          // }else{
-                          //   await OnboardingSharedPreferences.saveBoolen(true);
-                          //   Navigator.pushReplacementNamed(context, AppRoutes.CompleteOnboardingScreen.name,arguments: isLightTheme);
-                          // }
-                        },
-                        child: Text(
-                          appLocale.letsStart,
+                        if (appThemeProvider.getSelectedThemMode() ==
+                            ThemeMode.dark) {
+                          isLightTheme = false;
+                        }
+                        Navigator.pushNamed(
+                          context,
+                          AppRoutes.CompleteOnboardingScreen.name,
+                          arguments: isLightTheme,
+                        );
+                      },
+                      child: Text(
+                        appLocale.letsStart,
 
-                          style: textTheme.titleMedium?.copyWith(
-                            color: AppColor.whitePrimaryColor,
-                          ),
+                        style: textTheme.titleMedium?.copyWith(
+                          color: AppColor.whitePrimaryColor,
                         ),
                       ),
                     ),
@@ -123,6 +124,7 @@ import 'package:evently_app/core/colors/app_color.dart';
             ],
           ),
         ),
-      );
-    }
+      ),
+    );
   }
+}

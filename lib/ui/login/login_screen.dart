@@ -15,6 +15,8 @@ import '../../providers/app_auth_signIn_provider.dart';
 import 'app_form/app_form_login_screen.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -41,30 +43,26 @@ class _LoginScreenState extends State<LoginScreen> {
         centerTitle: true,
       ),
       body: Padding(
-        padding:  EdgeInsets.symmetric(vertical: 24, horizontal: 22),
+        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 22),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Column(
-                children: [
-                  Image.asset(AppImage.registerLogo, fit: BoxFit.cover),
-                  Text(
-                    appLocale.evently,
-                    style: GoogleFonts.jockeyOne(
-                      textStyle: textTheme.headlineMedium,
-                    ),
-                  ),
-                ],
+              Image.asset(AppImage.registerLogo, fit: BoxFit.cover),
+              Text(
+                appLocale.evently,
+                style: GoogleFonts.jockeyOne(
+                  textStyle: textTheme.headlineMedium,
+                ),
               ),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
 
-              AppFormLoginScreen(),
-              SizedBox(height: 24),
+              const AppFormLoginScreen(),
+              const SizedBox(height: 24),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(appLocale.doNotHaveAccount, style: textTheme.titleSmall),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(
@@ -82,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 34),
+              const SizedBox(height: 34),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -105,9 +103,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               InkWell(
                 onTap: () async {
+
                   await appAuthProvider.signinwithGoogle();
                   Navigator.pushReplacementNamed(
                     context,
@@ -128,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SvgPicture.asset(AppIcon.ic_google),
-                      SizedBox(width: 15),
+                      const SizedBox(width: 15),
                       Text(
                         'Login With Google',
                         style: textTheme.titleMedium?.copyWith(
@@ -139,7 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.26,
                 child: SafeArea(child: AppSwitchLanguage()),

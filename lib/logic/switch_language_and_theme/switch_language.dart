@@ -9,40 +9,32 @@ import '../../core/colors/app_color.dart';
 
 enum Languages { english, arabic }
 
-class AppSwitchLanguage extends StatefulWidget {
+class AppSwitchLanguage extends StatelessWidget {
   static List<Languages> languages = [Languages.english, Languages.arabic];
   double height;
 
   AppSwitchLanguage({this.height = 50.0});
 
   @override
-  State<AppSwitchLanguage> createState() => _AppSwitchLanguageState();
-}
-
-class _AppSwitchLanguageState extends State<AppSwitchLanguage> {
-  Languages geSelectedLanguage() {
-    if (appLanguageProvider.getAppLanguage() == 'en') {
-      return Languages.english;
-    }
-    return Languages.arabic;
-  }
-
-  late Languages selectedLanguage = geSelectedLanguage();
-
-  late AppLanguageProvider appLanguageProvider =
-      Provider.of<AppLanguageProvider>(context);
-
-  @override
   Widget build(BuildContext context) {
-    AppLanguageProvider appLanguageProvider = Provider.of<AppLanguageProvider>(
+   final AppLanguageProvider appLanguageProvider = Provider.of<AppLanguageProvider>(
       context,
     );
+    Languages geSelectedLanguage() {
+      if (appLanguageProvider.getAppLanguage() == 'en') {
+        return Languages.english;
+      }
+      return Languages.arabic;
+    }
+
+    late Languages selectedLanguage = geSelectedLanguage();
+
     return AnimatedToggleSwitch<Languages>.rolling(
       animationCurve: Curves.fastOutSlowIn,
 
-      height: widget.height,
+      height: height,
       current: selectedLanguage,
-      values: AppSwitchLanguage.languages,
+      values: languages,
 
       onChanged: (item) {
         selectedLanguage = item;
@@ -62,7 +54,7 @@ class _AppSwitchLanguageState extends State<AppSwitchLanguage> {
         }
       },
 
-      style: ToggleStyle(
+      style:  ToggleStyle(
         indicatorBorder: BoxBorder.all(
           width: 3,
           color: AppColor.bluePrimaryColor,

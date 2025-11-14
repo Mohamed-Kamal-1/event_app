@@ -13,15 +13,16 @@ class CompleteOnboardingScreen extends StatefulWidget {
       _CompleteOnboardingScreenState();
 }
 
-
 class _CompleteOnboardingScreenState extends State<CompleteOnboardingScreen> {
   bool? isLight;
-@override
+
+  @override
   void dispose() {
     super.dispose();
 
     _controller.dispose();
   }
+
   final PageController _controller = PageController();
   List<OnboardingData> onboardingData = OnboardingData.getOnboardingData();
 
@@ -35,7 +36,7 @@ class _CompleteOnboardingScreenState extends State<CompleteOnboardingScreen> {
       children: [
         PageView.builder(
           controller: _controller,
-          physics: const BouncingScrollPhysics(),
+          physics: const PageScrollPhysics(),
           itemCount: onboardingData.length,
           onPageChanged: (newIndex) {
             selectIndex = newIndex;
@@ -44,10 +45,7 @@ class _CompleteOnboardingScreenState extends State<CompleteOnboardingScreen> {
                 : 'Next';
             setState(() {
               final isLight =
-              ModalRoute
-                  .of(context)!
-                  .settings
-                  .arguments as bool;
+                  ModalRoute.of(context)!.settings.arguments as bool;
               onboardingData = OnboardingData.getOnboardingData(
                 isThemeLight: isLight,
               );
@@ -58,12 +56,9 @@ class _CompleteOnboardingScreenState extends State<CompleteOnboardingScreen> {
           },
         ),
         Container(
-          margin: EdgeInsets.symmetric(
+          margin: EdgeInsetsDirectional.symmetric(
             horizontal: 20,
-            vertical: MediaQuery
-                .of(context)
-                .size
-                .height * 0.045,
+            vertical: MediaQuery.of(context).size.height * 0.045,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

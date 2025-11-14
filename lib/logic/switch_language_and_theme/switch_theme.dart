@@ -17,7 +17,7 @@ class AppSwitchTheme extends StatefulWidget{
 class _AppSwitchThemeState extends State<AppSwitchTheme> {
   @override
   Widget build(BuildContext context) {
-   AppThemeProvider appThemeProvider = Provider.of<AppThemeProvider>(context);
+ final  AppThemeProvider appThemeProvider = Provider.of<AppThemeProvider>(context);
    return  AnimatedToggleSwitch<ThemeMode>.rolling(
      height: 45.76,
      current: appThemeProvider.getSelectedThemMode(),
@@ -31,13 +31,13 @@ class _AppSwitchThemeState extends State<AppSwitchTheme> {
 
      iconBuilder: (value, foreground) {
       if (value == ThemeMode.light) {
-       return Icon(EvaIcons.sun_outline);
+       return const Icon(EvaIcons.sun_outline);
       } else {
-       return Icon(EvaIcons.moon_outline);
+       return const Icon(EvaIcons.moon_outline);
       }
      },
 
-     style: ToggleStyle(
+     style: const ToggleStyle(
       indicatorColor: AppColor.bluePrimaryColor,
       backgroundColor: Colors.transparent,
       borderColor: AppColor.bluePrimaryColor,

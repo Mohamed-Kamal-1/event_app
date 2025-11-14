@@ -1,7 +1,8 @@
 import 'package:evently_app/core/colors/app_color.dart';
-import 'package:evently_app/core/routes/app_routes.dart';
+
 import 'package:evently_app/extensions/date_time_extensions.dart';
 import 'package:evently_app/extensions/extension_home_screen.dart';
+import 'package:evently_app/ui/event/event_edit/event_time_widget.dart';
 import 'package:flutter/material.dart';
 import '../../../database/model/EventsDao.dart';
 import '../../../database/model/category.dart';
@@ -46,13 +47,10 @@ class _EventEditState extends State<EventEdit> {
     descriptionController.text = widget.event.desc!;
   }
 
+  TimeOfDay? selectedTime;
+
   @override
   Widget build(BuildContext context) {
-    final eventTime = TimeOfDay.fromDateTime(
-      widget.event.time!,
-    ).format(context);
-    TimeOfDay initialTime = TimeOfDay.fromDateTime(widget.event.time!);
-
     return Scaffold(
       appBar: AppBar(
         foregroundColor: AppColor.bluePrimaryColor,
@@ -152,14 +150,9 @@ class _EventEditState extends State<EventEdit> {
                               ),
                             ],
                           ),
-                          TextButton(
-                            onPressed: () {
-                              chooseTime(initialTime);
-                            },
-                            child: Text(
-                              " ${(selectedTime == null) ? eventTime : selectedTime?.format(context)}",
-                              style: context.fonts.titleSmall,
-                            ),
+                          EventTimeWidget(
+                            event: widget.event,
+                            selectTime: (time) => selectedTime = time,
                           ),
                         ],
                       ),
@@ -186,7 +179,6 @@ class _EventEditState extends State<EventEdit> {
   }
 
   DateTime? selectedDate;
-  TimeOfDay? selectedTime;
 
   void chooseDate(DateTime? initialDate) async {
     var date = await showDatePicker(
@@ -198,18 +190,6 @@ class _EventEditState extends State<EventEdit> {
     if (date != null) {
       setState(() {
         selectedDate = date;
-      });
-    }
-  }
-
-  void chooseTime(TimeOfDay initialTime) async {
-    var time = await showTimePicker(
-      context: context,
-      initialTime: selectedTime ?? initialTime,
-    );
-    if (time != null) {
-      setState(() {
-        selectedTime = time;
       });
     }
   }
@@ -242,7 +222,6 @@ class _EventEditState extends State<EventEdit> {
     if (selectedDate != widget.event.date && selectedDate != null) {
       widget.event.date = selectedDate;
     }
-
 
     widget.event.categoryId = allCategories[selectedTabIndex].id;
     await EventsDao.updateEvent(widget.event);

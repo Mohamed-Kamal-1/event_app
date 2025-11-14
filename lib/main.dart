@@ -25,16 +25,16 @@ void main() async {
   await OnboardingSharedPreferences.init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => AppLanguageProvider()),
-        ChangeNotifierProvider(create: (context) => AppThemeProvider()),
-        ChangeNotifierProvider(create: (context) => AppAuthProvider()),
-      ],
-      child: MyApp(),
-    ),
-  );
+    runApp(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context) => AppLanguageProvider()),
+          ChangeNotifierProvider(create: (context) => AppThemeProvider()),
+          ChangeNotifierProvider(create: (context) => AppAuthProvider()),
+        ],
+        child: MyApp(),
+      ),
+    );
 }
 
 class MyApp extends StatelessWidget {

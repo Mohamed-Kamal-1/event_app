@@ -13,9 +13,9 @@ class DisplayScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: EventAppBarScreen(),
+      appBar:const EventAppBarScreen(),
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 16, vertical: 39),
+        margin:const EdgeInsets.symmetric(horizontal: 16, vertical: 39),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

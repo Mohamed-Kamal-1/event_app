@@ -1,13 +1,17 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
-class MapTab extends StatefulWidget {
+class  MapTab extends StatefulWidget {
   @override
   State<MapTab> createState() => _MapTabState();
 }
 
 class _MapTabState extends State<MapTab> {
+  final Completer<GoogleMapController> _controller =  Completer();
+  Iterable markers = [];
   Location location = Location();
 
   late LocationData userLocation;
@@ -25,15 +29,20 @@ class _MapTabState extends State<MapTab> {
     return intiLocation == null
         ? Center(child: CircularProgressIndicator())
         : GoogleMap(
+      markers: Set.from(markers),
       // cloudMapId: ,
       tiltGesturesEnabled: false,
       compassEnabled: true,
             myLocationEnabled: true,
             myLocationButtonEnabled: true,
+
             initialCameraPosition: CameraPosition(
               zoom: 15,
               target: intiLocation ?? LatLng(0, 0),
             ),
+      onMapCreated: (controller) {
+        _controller.complete(controller);
+      },
           );
   }
 
