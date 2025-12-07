@@ -30,7 +30,7 @@ The core technologies identified from the repository structure include:
 | **Frontend Framework** | **Flutter** | For building a natively compiled application from a single codebase. |
 | **Programming Language** | **Dart** | The primary language used for all application logic. |
 | **Backend Services** | **Firebase** | Highly likely used for Authentication, Realtime Database/Firestore, and Storage (`firebase.json`). |
-| **State Management** | *[Insert State Management Package: e.g., Provider]* | Crucial for handling application state efficiently. **(Update this field)** |
+| **State Management** | *Provider* | Crucial for handling application state efficiently. **(Update this field)** |
 | **Localization** | **flutter\_localizations** | For supporting multiple languages (i18n). |
 
 ## ⚙️ Getting Started
