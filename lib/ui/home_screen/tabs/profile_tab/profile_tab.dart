@@ -73,36 +73,36 @@ class ProfileTab extends StatelessWidget {
 
           const SizedBox(height: 30),
 
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: const Text(
-                "Language",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: const Text(
-                "Theme",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(height: 10),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          //   child: Align(
+          //     alignment: Alignment.centerLeft,
+          //     child: const Text(
+          //       "Language",
+          //       style: TextStyle(
+          //         color: Colors.white,
+          //         fontWeight: FontWeight.bold,
+          //         fontSize: 16,
+          //       ),
+          //     ),
+          //   ),
+          // ),
+          // const SizedBox(height: 10),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          //   child: Align(
+          //     alignment: Alignment.centerLeft,
+          //     child: const Text(
+          //       "Theme",
+          //       style: TextStyle(
+          //         color: Colors.white,
+          //         fontWeight: FontWeight.bold,
+          //         fontSize: 16,
+          //       ),
+          //     ),
+          //   ),
+          // ),
+          // const SizedBox(height: 10),
 
 
           const Spacer(),
