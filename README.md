@@ -21,6 +21,14 @@ Based on the project structure and technology hints:
 * **Internationalization Ready:** Supports multiple languages, indicated by the localization setup (`l10n.yaml`).
 * **Clean Architecture:** Structured codebase following best practices for scalability and maintainability.
 
+## 📥 Download 
+
+You can download and install the latest compiled version of the application for quick testing.
+
+  * **Android (APK):** https://bit.ly/48uCdlu
+  * 
+*Note: For the best experience or to contribute, please refer to the **Getting Started** section to build the project locally.*
+
 ## 🛠️ Technologies Used
 
 The core technologies identified from the repository structure include:
