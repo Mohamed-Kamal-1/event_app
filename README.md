@@ -25,7 +25,7 @@ Based on the project structure and technology hints:
 
 You can download and install the latest compiled version of the application for quick testing.
 
-  * **Android (APK):** https://bit.ly/48uCdlu
+  * **Android (APK):** https://bit.ly/4jp8huS
   * 
 *Note: For the best experience or to contribute, please refer to the **Getting Started** section to build the project locally.*
 
