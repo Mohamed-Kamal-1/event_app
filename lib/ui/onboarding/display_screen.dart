@@ -25,11 +25,11 @@ class DisplayScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: 44,
                 children: [
-                  Text(onboardingData.title, style: context.fonts.titleSmall?.copyWith(
+                  Text(context.appLocal.titleScreen1, style: context.fonts.titleSmall?.copyWith(
                     color: AppColor.bluePrimaryColor,
                   )),
                   Text(
-                    onboardingData.description,
+                    context.appLocal.descriptionScreen1,
                     style: context.fonts.titleSmall,
                   ),
                 ],

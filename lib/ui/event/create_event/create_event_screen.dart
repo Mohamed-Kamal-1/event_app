@@ -26,7 +26,6 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   var formKey = GlobalKey<FormState>();
-
   @override
   void dispose() {
     super.dispose();

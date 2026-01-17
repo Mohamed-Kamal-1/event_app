@@ -15,7 +15,6 @@ class AppFloatingActionButton extends StatelessWidget {
       onPressed: () {
         Navigator.pushNamed(context, AppRoutes.CreateEventScreen.name);
       },
-      child: Icon(Icons.add, size: 35),
       backgroundColor: AppColor.bluePrimaryColor,
       foregroundColor: AppColor.whitePrimaryColor,
 
@@ -23,6 +22,7 @@ class AppFloatingActionButton extends StatelessWidget {
         borderRadius: BorderRadiusGeometry.circular(360),
         side: BorderSide(color: AppColor.whitePrimaryColor, width: 5),
       ),
+      child: Icon(Icons.add, size: 35),
     );
   }
 }

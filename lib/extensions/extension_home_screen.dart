@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:evently_app/core/colors/app_color.dart';
 import 'package:flutter/material.dart';
 
 import '../l10n/app_localizations.dart';
@@ -22,9 +22,10 @@ extension BuildContextExtensions on BuildContext {
     VoidCallback? onPosActionClick,
     String? negActionText,
     VoidCallback? onNegActionClick,
-    bool isDismissible = true,
+        bool isDismissible = true,
   }) {
     showDialog(
+
       context: this,
       builder: (context) {
         var actions = [
@@ -48,6 +49,7 @@ extension BuildContextExtensions on BuildContext {
           );
         }
         return AlertDialog(
+          backgroundColor: color.onSecondaryFixed,
           content: SizedBox(
             child: Text(
               textAlign: TextAlign.center,
@@ -63,7 +65,7 @@ extension BuildContextExtensions on BuildContext {
     );
   }
 
-  void showLoadingDialog({String? message, bool isDismissible = true}) {
+  void showLoadingDialog({String? message, bool isDismissible = true,}) {
     showDialog(
       context: this,
       builder: (context) {
