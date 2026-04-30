@@ -140,6 +140,48 @@ abstract class AppLocalizations {
   /// **'Let’s Start'**
   String get letsStart;
 
+  /// No description provided for @commentOnboardingScreenName.
+  ///
+  /// In en, this message translates to:
+  /// **'OnboardingScreen'**
+  String get commentOnboardingScreenName;
+
+  /// No description provided for @titleScreen1.
+  ///
+  /// In en, this message translates to:
+  /// **'Find Events That Inspire You'**
+  String get titleScreen1;
+
+  /// No description provided for @descriptionScreen1.
+  ///
+  /// In en, this message translates to:
+  /// **'Dive into a world of events crafted to fit your unique interests. Whether you\'re into live music, art workshops, professional networking, or simply discovering new experiences, we have something for everyone. Our curated recommendations will help you explore, connect, and make the most of every opportunity around you.'**
+  String get descriptionScreen1;
+
+  /// No description provided for @titleScreen2.
+  ///
+  /// In en, this message translates to:
+  /// **'Effortless Event Planning'**
+  String get titleScreen2;
+
+  /// No description provided for @descriptionScreen2.
+  ///
+  /// In en, this message translates to:
+  /// **'Take the hassle out of organizing events with our all-in-one planning tools. From setting up invites and managing RSVPs to scheduling reminders and coordinating details, we’ve got you covered. Plan with ease and focus on what matters – creating an unforgettable experience for you and your guests.'**
+  String get descriptionScreen2;
+
+  /// No description provided for @titleScreen3.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect with Friends & Share Moments'**
+  String get titleScreen3;
+
+  /// No description provided for @descriptionScreen3.
+  ///
+  /// In en, this message translates to:
+  /// **'Make every event memorable by sharing the experience with others. Our platform lets you invite friends, keep everyone in the loop, and celebrate moments together. Capture and share the excitement with your network, so you can relive the highlights and cherish the memories.'**
+  String get descriptionScreen3;
+
   /// No description provided for @commentRegisterAndLoginScreenName.
   ///
   /// In en, this message translates to:

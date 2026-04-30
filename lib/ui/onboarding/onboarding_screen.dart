@@ -1,6 +1,7 @@
 import 'package:evently_app/core/colors/app_color.dart';
 import 'package:evently_app/core/routes/app_routes.dart';
 import 'package:evently_app/logic/switch_language_and_theme/switch_theme.dart';
+import 'package:evently_app/providers/app_language_provider.dart';
 import 'package:evently_app/providers/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -109,7 +110,10 @@ class OnboardingScreen extends StatelessWidget {
                         Navigator.pushNamed(
                           context,
                           AppRoutes.CompleteOnboardingScreen.name,
-                          arguments: isLightTheme,
+                          arguments: {
+                            'isLightTheme': isLightTheme,
+                            'appLocal': AppLanguageProvider().getAppLanguage(),
+                          },
                         );
                       },
                       child: Text(

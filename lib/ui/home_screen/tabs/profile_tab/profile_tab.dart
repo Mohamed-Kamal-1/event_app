@@ -25,15 +25,16 @@ class ProfileTab extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            margin: EdgeInsets.only(top: 30),
+            height: 220,
             padding: const EdgeInsets.all(20),
             decoration:  BoxDecoration(
-              color:context.color.primaryContainer,
+              color:context.color.onSecondaryFixedVariant,
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(50),
               ),
             ),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.only(
@@ -46,26 +47,34 @@ class ProfileTab extends StatelessWidget {
                   child: Image.asset(AppImage.profile,
 
                     fit: BoxFit.cover,
+                    width: 124,
                   ),
                 ),
                 const SizedBox(width: 16),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "${user ?? ""}",
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                Padding(
+                  padding: EdgeInsets.only(top: 32),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      FittedBox(
+                        child: Text(
+                          user ?? "",
+                          style: const TextStyle(
+                            fontSize: 23,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      "${email ?? ""}",
-                      style: const TextStyle(color: Colors.white, fontSize: 14),
-                    ),
-                  ],
+                      // const SizedBox(height: 8),
+                      Text(
+                        email ?? "",
+                        style: const TextStyle(
+                            color: Colors.white, fontSize: 16),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

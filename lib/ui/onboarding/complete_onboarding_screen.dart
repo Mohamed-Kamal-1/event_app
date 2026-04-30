@@ -1,6 +1,5 @@
 import 'package:evently_app/ui/onboarding/display_screen.dart';
 import 'package:evently_app/ui/onboarding/onboarding_data.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -19,7 +18,6 @@ class _CompleteOnboardingScreenState extends State<CompleteOnboardingScreen> {
   @override
   void dispose() {
     super.dispose();
-
     _controller.dispose();
   }
 
@@ -31,6 +29,10 @@ class _CompleteOnboardingScreenState extends State<CompleteOnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final String appLocal;
+    final data =
+        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+    appLocal = data['appLocal'];
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
@@ -44,8 +46,7 @@ class _CompleteOnboardingScreenState extends State<CompleteOnboardingScreen> {
                 ? 'Finish'
                 : 'Next';
             setState(() {
-              final isLight =
-                  ModalRoute.of(context)!.settings.arguments as bool;
+              final isLight = data['isLightTheme'];
               onboardingData = OnboardingData.getOnboardingData(
                 isThemeLight: isLight,
               );
@@ -80,7 +81,9 @@ class _CompleteOnboardingScreenState extends State<CompleteOnboardingScreen> {
                     ),
                     borderRadius: BorderRadiusGeometry.circular(360),
                   ),
-                  child: Icon(Icons.arrow_back),
+                  child: (appLocal == 'en')
+                      ? Icon(Icons.arrow_back)
+                      : Icon(Icons.arrow_forward),
                 ),
               ),
 
@@ -108,7 +111,9 @@ class _CompleteOnboardingScreenState extends State<CompleteOnboardingScreen> {
                     ),
                     borderRadius: BorderRadiusGeometry.circular(360),
                   ),
-                  child: Icon(Icons.arrow_back),
+                  child: (appLocal == 'en')
+                      ? Icon(Icons.arrow_forward)
+                      : Icon(Icons.arrow_back),
                 ),
               ),
             ],

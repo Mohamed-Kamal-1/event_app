@@ -8,6 +8,16 @@
   "theme": "المظهر",
   "letsStart": "هيا نبدأ",
 
+
+  "commentOnboardingScreenName": "OnboardingScreen",
+  "titleScreen1": "اكتشف فعاليات تناسبك",
+  "descriptionScreen1": "استكشف فعاليات مختلفة تناسب اهتماماتك، سواء موسيقى، فن، أو أنشطة جديدة. هتلاقي دايمًا حاجات ممتعة تستمتع بيها وتشاركها مع غيرك.",
+  "titleScreen2": "نظّم فعالياتك بسهولة",
+  "descriptionScreen2": "نظّم فعالياتك من غير تعب. ابعت دعوات، تابع الحضور، وخلي كل التفاصيل تحت سيطرتك بخطوات بسيطة.",
+  "titleScreen3": "شارك اللحظات مع أصحابك",
+  "descriptionScreen3": "خلي كل فعالية أحلى بمشاركة أصحابك. اعزمهم، شارك اللحظات، واستمتع بالذكريات مع الناس اللي بتحبهم.",
+
+
   "commentRegisterAndLoginScreenName": "Register_and_Login_",
   "register": " تسجيل الدخول",
   "name": "الاسم",

@@ -31,6 +31,30 @@ class AppLocalizationsAr extends AppLocalizations {
   String get letsStart => 'هيا نبدأ';
 
   @override
+  String get commentOnboardingScreenName => 'OnboardingScreen';
+
+  @override
+  String get titleScreen1 => 'اكتشف فعاليات تناسبك';
+
+  @override
+  String get descriptionScreen1 =>
+      'استكشف فعاليات مختلفة تناسب اهتماماتك، سواء موسيقى، فن، أو أنشطة جديدة. هتلاقي دايمًا حاجات ممتعة تستمتع بيها وتشاركها مع غيرك.';
+
+  @override
+  String get titleScreen2 => 'نظّم فعالياتك بسهولة';
+
+  @override
+  String get descriptionScreen2 =>
+      'نظّم فعالياتك من غير تعب. ابعت دعوات، تابع الحضور، وخلي كل التفاصيل تحت سيطرتك بخطوات بسيطة.';
+
+  @override
+  String get titleScreen3 => 'شارك اللحظات مع أصحابك';
+
+  @override
+  String get descriptionScreen3 =>
+      'خلي كل فعالية أحلى بمشاركة أصحابك. اعزمهم، شارك اللحظات، واستمتع بالذكريات مع الناس اللي بتحبهم.';
+
+  @override
   String get commentRegisterAndLoginScreenName => 'Register_and_Login_';
 
   @override

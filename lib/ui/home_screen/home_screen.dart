@@ -92,8 +92,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     }
                   },
                   icon: (isLight)
-                      ? Icon(Icons.wb_sunny_outlined)
-                      : Icon(Icons.sunny),
+                      ? Icon(
+                          Icons.wb_sunny_outlined,
+                          color: AppColor.whitePrimaryColor,
+                        )
+                      : Icon(Icons.sunny, color: AppColor.whitePrimaryColor),
                 ),
                 FloatingActionButton(
                   heroTag: null,

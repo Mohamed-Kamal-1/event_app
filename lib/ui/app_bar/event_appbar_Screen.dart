@@ -12,6 +12,7 @@ class EventAppBarScreen extends StatelessWidget implements PreferredSizeWidget {
     AppLocalizations? appLocale = AppLocalizations.of(context);
     return AppBar(
       centerTitle: true,
+
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

@@ -10,10 +10,15 @@ class AppTheme {
       secondary: AppColor.whitePrimaryColor,
       onPrimary: AppColor.whitePrimaryColor,
       onPrimaryFixed: AppColor.bluePrimaryColor,
+      onSecondaryFixedVariant:  AppColor.bluePrimaryColor,
+      onSecondaryFixed: AppColor.whitePrimaryColor,
       brightness: Brightness.light,
     ),
     // canvasColor: AppColor.gold,
-    appBarTheme: AppBarTheme(backgroundColor: AppColor.whitePrimaryColor),
+    appBarTheme: AppBarTheme(
+        iconTheme: IconThemeData(color: AppColor.bluePrimaryColor
+        ),
+        backgroundColor: AppColor.whitePrimaryColor),
     scaffoldBackgroundColor: Colors.white,
     textTheme: TextTheme(
       titleMedium: GoogleFonts.inter(
@@ -89,6 +94,8 @@ class AppTheme {
       primary: AppColor.darkBluePrimaryColor,
       secondary: AppColor.darkBluePrimaryColor,
       onPrimaryFixed: AppColor.whitePrimaryColor,
+      onSecondaryFixed: AppColor.bluePrimaryColor,
+      onSecondaryFixedVariant:  AppColor.bluePrimaryColor,
       brightness: Brightness.dark,
     ),
     appBarTheme: AppBarTheme(backgroundColor: AppColor.darkBluePrimaryColor),
